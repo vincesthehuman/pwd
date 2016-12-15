@@ -22,11 +22,10 @@ body{
 #bar {
     height: 100%;
     width: 80px;
-    background-color: rgba(0, 0, 0, 0.5);
     margin: 0;
     padding: 10px;
-    border-right: solid 1px;
-    background-color: rgba(179, 179, 179, 0.25)
+    border-right: solid 5px;
+    background-color: rgba(0, 0, 0, 0.15)
 }
 
 .icon {
