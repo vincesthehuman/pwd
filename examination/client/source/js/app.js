@@ -1,12 +1,12 @@
 /**
- * 
+ *
  * Created by vinces on 2016-12-14.
  */
 
 'use strict';
 
-const OnClick = require('./onClick');
+const Desktop = require('./Desktop');
 
-const onclick = new OnClick;
+const desktop = new Desktop;
 
-onclick.click();
+desktop.click();

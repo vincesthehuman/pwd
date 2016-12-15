@@ -6,38 +6,68 @@ body{
 }
 
 #wrapper {
-    background-image: url("/image/jakethedog.png");
-    background-position: center;
+    background: url("/image/jakethedog.png") center;
     background-size: cover;
     width: 100%;
     height: 100%;
     margin: 0;
-
     position:fixed;
-    top:0px;
-    bottom:0px;
-    left:0px;
-    right:0px;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
 }
-#bar {
+#sidebar {
     height: 100%;
     width: 80px;
     margin: 0;
     padding: 10px;
     border-right: solid 5px;
-    background-color: rgba(0, 0, 0, 0.15)
+    background-color: rgba(0, 0, 0, 0.15);
+    position: absolute;
 }
 
 .icon {
     height: 60px;
     width: 60px;
     margin: 10px;
+    border: solid 5px;
 }
 
 a{
     height: 100%;
+    display: inline-block;
 }
 
 img{
     height: 100%;
+    pointer-events: none;
 }
+
+.window {
+    width: 300px;
+    height: 400px;
+    position: absolute;
+    margin-left: 500px;
+    padding: 0;
+    float: right;
+}
+
+.topbar {
+    height: 5%;
+    background-color: #8a8a8a;
+    padding: 1%;
+}
+.topbar p {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+
+.windowcontent {
+    height: 90%;
+    background-color: white;
+}
+
+
