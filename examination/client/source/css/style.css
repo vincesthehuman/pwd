@@ -49,26 +49,22 @@ img{
     width: 300px;
     height: 400px;
     position: absolute;
-    padding: 0;
+    padding: 0 5px 5px 5px;
+    margin: 0;
     top: 0;
-    left: 500px;
+    left: 250px;
+    background-color: #8a8a8a;
 }
 
 .topbar {
     height: 5%;
     background-color: #8a8a8a;
     padding: 1%;
+    text-align: center;
 }
 
-.topbar p {
-    padding: 0;
-    margin: 0;
-    text-align: left;
-    width: auto;
-    display: inline-block;
-}
 
 .windowcontent {
-    height: 90%;
+    height: 93%;
     background-color: white;
 }
