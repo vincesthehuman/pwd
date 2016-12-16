@@ -7,14 +7,19 @@ const AppGui = require('./AppGui');
 
 class Desktop {
     constructor() {
-        this.target;
+        this.windowCount = 0;
     }
     click() {
-        let icon = document.querySelector('#sidebar');
-        icon.addEventListener('click', event =>{
-            this.target = event.target.id;
-            const appGui = new AppGui();
-            appGui.gui(this.target);
+        let click = document.querySelector('#wrapper');
+        click.addEventListener('click', event =>{
+            let target = event.target;
+            if(target.hasAttribute('id')){
+                if (target.id === 'game' || target.id === 'chat') {
+                    this.windowCount += 1;
+                    const appGui = new AppGui(this.windowCount);
+                    appGui.gui(target);
+                }
+            }
         })
     }
 }

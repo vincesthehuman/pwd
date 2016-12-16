@@ -7,13 +7,19 @@
 'use strict';
 
 class AppGui{
-    constructor() {
+    constructor(windowCount) {
         this.id = document.querySelector('#wrapper');
+        this.windows = windowCount;
     }
     gui(name){
         let template = document.querySelector('#wrapper template');
         let window = document.importNode(template.content.firstElementChild, true);
 
+        window.addEventListener('mousedown' , event => {
+            console.log('hejhej');
+        });
+
+        window.setAttribute('id', 'window' + this.windows);
         this.id.appendChild(window);
     }
 }
