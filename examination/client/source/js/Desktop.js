@@ -21,11 +21,13 @@ class Desktop {
                     this.allWindows = this.chatWindowCount + this.gameWindowCount;
                     const appGui = new AppGui(this.gameWindowCount, this.allWindows);
                     appGui.gui(target);
+                    console.log('poop1')
                 }else if (target.id === 'Chat'){
                     this.chatWindowCount += 1;
                     this.allWindows = this.chatWindowCount + this.gameWindowCount;
                     const appGui = new AppGui(this.chatWindowCount, this.allWindows);
                     appGui.gui(target);
+
                 }
             }
         })
