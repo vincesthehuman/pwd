@@ -20,7 +20,7 @@ class AppGui{
         window.querySelector('.topbar').setAttribute('id', 'window ' + name.id + ' ' + this.windows);
         window.querySelector('.topbar').textContent =  name.id + ' ' + this.windows;
 
-        window.style.top =+ 120 * this.allW + 'px';
+        window.style.top =+ 80 * this.allW + 'px';
         window.style.left =+ 120 * this.allW + 'px';
 
         this.id.appendChild(window);
