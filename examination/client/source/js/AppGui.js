@@ -14,20 +14,32 @@ class AppGui{
     }
     gui(name){
         let template = document.querySelector('#wrapper template');
-        let window = document.importNode(template.content.firstElementChild, true);
+        let appWindow = document.importNode(template.content.firstElementChild, true);
 
-        window.setAttribute('id', name.id + ' ' + this.windows);
-        window.querySelector('.topbar').setAttribute('id', 'window ' + name.id + ' ' + this.windows);
-        window.querySelector('.topbar').textContent =  name.id + ' ' + this.windows;
+        appWindow.setAttribute('id', name.id + ' ' + this.windows);
+        appWindow.querySelector('.topbar').setAttribute('id', 'window ' + name.id + ' ' + this.windows);
+        appWindow.querySelector('.topbar').textContent =  name.id + ' ' + this.windows;
 
-        window.style.top =+ 80 * this.allW + 'px';
-        window.style.left =+ 120 * this.allW + 'px';
+        appWindow.style.top =+ 80 * this.allW + 'px';
+        appWindow.style.left =+ 120 * this.allW + 'px';
 
-        this.id.appendChild(window);
+        let newpos = function () {
+        };
 
-        window.addEventListener('click' , event => {
-            console.log(event.target.parentNode.id);
-        });
+        appWindow.addEventListener('mousedown', event =>{
+
+            let moveWindow = function (e) {
+                appWindow.style.top = e.clientY + 'px';
+                appWindow.style.left = e.clientX + 'px';
+            };
+
+            document.addEventListener('mousemove', moveWindow);
+            document.addEventListener('mouseup', x => {
+                document.removeEventListener('mousemove', moveWindow);
+            })
+        }, true);
+
+        this.id.appendChild(appWindow);
     }
 }
 
