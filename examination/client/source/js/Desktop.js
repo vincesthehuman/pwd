@@ -26,6 +26,8 @@ class Desktop {
                     this.allWindows = this.chatWindowCount + this.gameWindowCount;
                     const appGui = new AppGui(this.chatWindowCount, this.allWindows);
                     appGui.gui(target);
+                }else if (target.id === 'close'){
+                    click.removeChild(target.parentNode.parentNode);
                 }
             }
         })
