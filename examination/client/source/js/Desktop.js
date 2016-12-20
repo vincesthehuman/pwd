@@ -19,12 +19,12 @@ class Desktop {
                 if (target.id === 'Game'){
                     this.gameWindowCount += 1;
                     this.allWindows = this.chatWindowCount + this.gameWindowCount;
-                    const appGui = new AppGui(this.gameWindowCount, this.allWindows);
+                    const appGui = new AppGui(this.gameWindowCount, this.allWindows, target.id);
                     appGui.gui(target);
                 }else if (target.id === 'Chat'){
                     this.chatWindowCount += 1;
                     this.allWindows = this.chatWindowCount + this.gameWindowCount;
-                    const appGui = new AppGui(this.chatWindowCount, this.allWindows);
+                    const appGui = new AppGui(this.chatWindowCount, this.allWindows, target.id);
                     appGui.gui(target);
                 }else if (target.id === 'close'){
                     click.removeChild(target.parentNode.parentNode);

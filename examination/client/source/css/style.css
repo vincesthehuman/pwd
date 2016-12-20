@@ -11,7 +11,7 @@ body{
 
 p {
     margin:0;
-    padding: 0;
+    padding-top: 5px;
     display: block;
 }
 
@@ -21,7 +21,7 @@ p {
     width: 100%;
     height: 100%;
     margin: 0;
-    position:fixed;
+    position: fixed;
     top:0;
     bottom:0;
     left:0;
@@ -58,9 +58,13 @@ img{
     display: inline-block;
 }
 
+.topicon {
+    float: left;
+}
+
 .window {
-    width: 300px;
-    height: 400px;
+    width: 500px;
+    height: 600px;
     position: absolute;
     padding: 0 5px 5px 5px;
     margin: 0;
@@ -76,11 +80,36 @@ img{
     text-align: center;
 }
 
+#close {
+    cursor: pointer;
+}
+
 .windowcontent {
     height: 93%;
     background-color: white;
 }
 
-.zStyle{
-    z-index: 2;
+.formstyle{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.chatinput {
+    margin-top: 100%;
+    float: left;
+}
+
+.usermessage{
+    text-align: left;
+    background-color: aqua;
+    padding: 5px;
+    margin: 2px;
+}
+
+.chatreply{
+    text-align: right;
+    background-color: red;
+    padding: 5px;
+    margin: 2px;
 }
