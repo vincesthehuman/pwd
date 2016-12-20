@@ -6,19 +6,30 @@
 
 class Chat {
     constructor(content){
-        this.content = content;
+        this.content = document.getElementById(content).lastElementChild;
     }
     chatApp(){
-
-        let place = document.getElementById(this.content).lastElementChild;
+        let formDiv = document.createElement('div');
         let formTag = document.createElement('form');
         let inputTag = document.createElement('input');
+        let img = document.createElement('img');
+        let aTag = document.createElement('a');
+        let textField = document.createElement('div');
 
+        textField.setAttribute('class', 'textfield');
+        formDiv.setAttribute('class', 'chatStyles');
         formTag.setAttribute('class', 'formstyle');
         inputTag.setAttribute('class', 'chatinput');
+        aTag.setAttribute('href', '#');
+        aTag.setAttribute('class', 'sendicon');
+        img.setAttribute('src', '/image/send.png');
 
+        this.content.appendChild(textField);
         formTag.appendChild(inputTag);
-        place.appendChild(formTag);
+        formDiv.appendChild(formTag);
+        aTag.appendChild(img);
+        formDiv.appendChild(aTag);
+        this.content.appendChild(formDiv);
     }
     getMessage(){
 

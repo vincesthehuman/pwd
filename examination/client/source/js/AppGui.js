@@ -30,12 +30,15 @@ class AppGui{
 
         appWindow.style.top =+ 45 * this.allW + 'px';
         appWindow.style.left =+ 105 * this.allW + 'px';
+
+
         appWindow.style.zIndex = '1';
-        appWindow.style.cursor = 'move';
+        appWindow.firstElementChild.style.cursor = 'move';
 
         appWindow.querySelector('.topicon').setAttribute('src', '/image/' + this.targetID + '.png');
+        console.log(appWindow.firstElementChild.id);
 
-        this.move(appWindow);
+        this.move(appWindow.firstElementChild);
 
         this.id.appendChild(appWindow);
 
@@ -49,9 +52,18 @@ class AppGui{
     }
     move(selected) {
         selected.addEventListener('mousedown', event =>{
+            let windowPosX = parseInt(selected.parentNode.style.left, 10);
+            let windowPosY = parseInt(selected.parentNode.style.top, 10);
+
+            let offsetX = event.pageX - windowPosX;
+            let offsetY = event.pageY - windowPosY;
+
             let moveWindow = function (e) {
-                selected.style.top = e.clientY + 'px';
-                selected.style.left = e.clientX + 'px';
+
+                let moveToX = e.pageX - offsetX;
+                let moveToY = e.pageY - offsetY;
+                selected.parentNode.style.top = moveToY + 'px';
+                selected.parentNode.style.left = moveToX + 'px';
             };
 
             let removeEvent = function(x) {
