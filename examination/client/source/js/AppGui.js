@@ -46,7 +46,7 @@ class AppGui{
             console.log('hello Gamer')
         }else if(this.targetID === 'Chat'){
             const chatWindow = new Chat(appWindow.id);
-            chatWindow.chatApp();
+            chatWindow.initiate();
         }
 
     }

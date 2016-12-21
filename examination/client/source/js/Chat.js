@@ -8,6 +8,26 @@ class Chat {
     constructor(content){
         this.content = document.getElementById(content).lastElementChild;
     }
+    initiate(){
+        this.content.className += ' username';
+        let div = document.createElement('div');
+        let pTag = document.createElement('p');
+        let pText = document.createTextNode('Please enter a username:');
+
+        let formTag = document.createElement('form');
+        let inputTag = document.createElement('input');
+
+        div.setAttribute('class', 'usernamefield');
+
+        pTag.appendChild(pText);
+        formTag.appendChild(inputTag);
+
+        div.appendChild(pTag);
+        div.appendChild(formTag);
+
+        this.content.appendChild(div)
+    }
+
     chatApp(){
         let formDiv = document.createElement('div');
         let formTag = document.createElement('form');
@@ -31,10 +51,14 @@ class Chat {
         formDiv.appendChild(aTag);
         this.content.appendChild(formDiv);
     }
-    getMessage(){
 
-    }
-    sendMessage(){
+    messages(input){
+        let socket = new WebSocket('ws://vhost3.lnu.se:20080/socket/');
+
+        let data = input;
+
+
+
         let message = {
             "type": "message",
             "data" : "The message text is sent using the data property",
