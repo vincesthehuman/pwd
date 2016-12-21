@@ -1,5 +1,7 @@
 /**
  * Created by vinces on 2016-12-15.
+ *
+ * ToDo close socket when wondow is closed
  */
 
 'use strict';
@@ -7,27 +9,62 @@
 class Chat {
     constructor(content){
         this.content = document.getElementById(content).lastElementChild;
+        this.userName = '';
     }
     initiate(){
-        this.content.className += ' username';
-        let div = document.createElement('div');
-        let pTag = document.createElement('p');
-        let pText = document.createTextNode('Please enter a username:');
-
-        let formTag = document.createElement('form');
-        let inputTag = document.createElement('input');
-
-        div.setAttribute('class', 'usernamefield');
-
-        pTag.appendChild(pText);
-        formTag.appendChild(inputTag);
-
-        div.appendChild(pTag);
-        div.appendChild(formTag);
-
-        this.content.appendChild(div)
+        this.enterName();
     }
+    enterName() {
+        let userName = localStorage.getItem('ChatUser');
 
+        if(userName !== null){
+            userName = JSON.parse(userName);
+            this.chatApp();
+        }else{
+            this.content.className += ' username';
+            let div = document.createElement('div');
+            let divImg = document.createElement('div');
+            let aTag = document.createElement('a');
+            let img = document.createElement('img');
+            let pTag = document.createElement('p');
+            let pText = document.createTextNode('Please enter a username:');
+
+            let formTag = document.createElement('form');
+            let inputTag = document.createElement('input');
+
+            aTag.setAttribute('href', '#');
+            img.setAttribute('src', '/image/accept.png');
+            div.setAttribute('class', 'usernamefield');
+
+            aTag.appendChild(img);
+            divImg.appendChild(aTag);
+            pTag.appendChild(pText);
+            formTag.appendChild(inputTag);
+
+            div.appendChild(pTag);
+            div.appendChild(formTag);
+            div.appendChild(divImg);
+
+
+            this.content.appendChild(div);
+
+            aTag.addEventListener('click', event =>{
+                let inputValue = this.content.querySelector('input').value;
+
+                if(inputValue.length <= 0 || inputValue.length >= 25){
+                    console.log('the name is either too short or too long dude!')
+                }else{
+                    this.userName = this.content.querySelector('input').value;
+                    let chatUsername = {username: this.userName};
+                    localStorage.setItem('ChatUser', JSON.stringify(chatUsername));
+                    //clear the div
+                    this.chatApp();
+                }
+            });
+        }
+
+
+    }
     chatApp(){
         let formDiv = document.createElement('div');
         let formTag = document.createElement('form');

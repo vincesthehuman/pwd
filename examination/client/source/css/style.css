@@ -96,7 +96,7 @@ img{
 
 .username{
     display: inline-block;
-    background-color: lightgrey;
+    background-color: white;
     width: 100%;
 }
 
@@ -112,9 +112,18 @@ img{
     font-size: 18px;
 }
 
+.usernamefield div{
+    width: 10%;
+}
+
+.usernamefield a{
+    width: 60%;
+    height: 5%;
+    padding-top: 7.5%;
+}
+
 .usernamefield form input{
     width: 100%;
-    margin-left: 5%;
 }
 
 .textfield{
