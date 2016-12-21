@@ -11,6 +11,7 @@ class Desktop {
         this.chatWindowCount = 0;
         this.allWindows = 0;
     }
+
     click() {
         let click = document.querySelector('#wrapper');
         click.addEventListener('click', event =>{
@@ -27,11 +28,15 @@ class Desktop {
                     const appGui = new AppGui(this.chatWindowCount, this.allWindows, target.id);
                     appGui.gui(target);
                 }else if (target.id === 'close'){
+                    if(target.parentNode.parentNode.id === 'Chat'){
+                        target.id.socket.close();
+                    }
                     click.removeChild(target.parentNode.parentNode);
                 }
             }
         })
     }
+
 }
 
 module.exports = Desktop;

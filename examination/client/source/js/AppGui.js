@@ -16,6 +16,7 @@ class AppGui{
         this.targetID = targetID;
         this.windowCounter = 0;
     }
+
     gui(name){
         let template = document.querySelector('#wrapper template');
         let appWindow = document.importNode(template.content.firstElementChild, true);
@@ -46,7 +47,7 @@ class AppGui{
             console.log('hello Gamer')
         }else if(this.targetID === 'Chat'){
             const chatWindow = new Chat(appWindow.id);
-            chatWindow.initiate();
+            chatWindow.enterName();
         }
 
     }
@@ -75,6 +76,7 @@ class AppGui{
             document.addEventListener('mouseup', removeEvent);
         });
     }
+
 }
 
 module.exports = AppGui;

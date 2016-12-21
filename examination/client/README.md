@@ -43,13 +43,13 @@ You connect to the server via web sockets and send messages using the json forma
 {
   "type": "message",
   "data" : "The message text is sent using the data property",
-  "username": "MyFancyUsername",
+  "chatName": "MyFancyUsername",
   "channel": "my, not so secret, channel",
   "key": "A api-key. Found when logged in on the course webpage"
 }
 ```
-The properties `type`, `data`, `username` and `key` are mandatory when **sending** a message to the server.
-The properties `type`, `data` and  `username` will always be present when you **receive** a message from the server. Additionally, all properties sent from one user will be echoed to all receiving clients.
+The properties `type`, `data`, `chatName` and `key` are mandatory when **sending** a message to the server.
+The properties `type`, `data` and  `chatName` will always be present when you **receive** a message from the server. Additionally, all properties sent from one user will be echoed to all receiving clients.
 
 ### The API-key
 To get the api-key to the chat application please log in at the [profile page](https://coursepress.lnu.se/kurs/klientbaserad-webbprogrammering/course-information/profile-information/) on the course web page.
@@ -61,7 +61,7 @@ The web socket server will send a "heartbeat" message to keep the connection ope
 {
   "type": "heartbeat",
   "data" : "",
-  "username": "Server"
+  "chatName": "Server"
 }
 ```
 
@@ -69,8 +69,8 @@ Your application can simply ignore those messages completly.
 
 ### Functional requirements, Chat application:
 * The user should be able to have several chat applications running at the same time.
-* When the user opens the application for the first time the user should be asked to write his/her username.
-* The username should remain the same the next time the user starts a chat application or the PWD is restarted.
+* When the user opens the application for the first time the user should be asked to write his/her chatName.
+* The chatName should remain the same the next time the user starts a chat application or the PWD is restarted.
 * The user should be able to send chat messages using a textarea.
 * The user should be able to see at least the 20 latest messages since the chat applications was opened.
 * One, by you decided, extended feature.
@@ -80,7 +80,7 @@ You are free to add functionality not described above. Added functionality could
 * Caching message history.
 * Added support for emojis.
 * Added support for writing code.
-* Ability to change username.
+* Ability to change chatName.
 * Encrypted messages on a special channel to allow secret communication.
 * Added functionality to the "chat protocol". Discuss with others in the course and agree upon added functionality to add to the sent messages.
 * Use the messages to play memory against an opponent. Perferably using a seperate channel.

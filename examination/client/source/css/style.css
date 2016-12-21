@@ -92,6 +92,7 @@ img{
 .windowcontent {
     height: 93%;
     background-color: white;
+    overflow: hidden;
 }
 
 .username{
@@ -127,8 +128,9 @@ img{
 }
 
 .textfield{
-    width: 100%;
+    width: calc(100% + 17px);
     height: 90%;
+    overflow-y: scroll;
 }
 
 .formstyle{
@@ -148,7 +150,10 @@ img{
 .chatinput {
     margin-top: 1.5%;
     margin-left: 1%;
-    width: 70%;
+    min-width: 70%;
+    min-height: 22px;
+    max-width: 70%;
+    max-height: 22px;
     float: left;
     line-height: 25px;
 }
@@ -172,14 +177,22 @@ input, textarea {
 
 .usermessage{
     text-align: left;
-    background-color: aqua;
-    padding: 5px;
-    margin: 2px;
+    margin-right: 18%;
+    margin-left: 2%;
+    width: 80%;
+    padding-top: 4%;
+}
+
+.usermessage span, .chatreply span{
+    border-radius: 5px;
+    background-color: #F8BF28;
+    padding: 2%;
 }
 
 .chatreply{
     text-align: right;
-    background-color: red;
-    padding: 5px;
-    margin: 2px;
+    margin-left: 18%;
+    width: 80%;
+    padding-top: 4%;
 }
+
