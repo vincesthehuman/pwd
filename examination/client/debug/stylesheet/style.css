@@ -142,6 +142,7 @@ img{
 .usernamefield {
     width: 100%;
     padding-top: 50%;
+    padding-left: 4%;
     margin: 1%;
     float: left;
     display: flex;
@@ -220,20 +221,27 @@ input, textarea{
     margin-right: 18%;
     margin-left: 2%;
     width: 80%;
-    padding-top: 4%;
+    padding-bottom: 1%;
 }
 
 .chatreply{
     text-align: right;
     margin-left: 18%;
     width: 80%;
-    padding-top: 4%;
+    padding-bottom: 1%;
 }
 
-.clientmessage span, .chatreply span{
+.clientmessage p, .chatreply p{
     border-radius: 5px;
     background-color: #F8BF28;
     padding: 2%;
+    display: inline-block;
+    color: black;
+}
+
+.sendername{
+    color: white !important;
+    padding: 0;
 }
 
 .chatreply{
@@ -250,7 +258,7 @@ input, textarea{
     padding-top: 2%;
 }
 
-.servermessage span{
+.servermessage p{
     color: forestgreen;
     padding: 2%;
     font-size: 14px;

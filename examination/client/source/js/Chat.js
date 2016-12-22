@@ -27,7 +27,7 @@ class Chat {
             let aTag = document.createElement('a');
             let img = document.createElement('img');
             let pTag = document.createElement('p');
-            let pText = document.createTextNode('Please enter a username:');
+            let pText = document.createTextNode('Enter a username:');
 
             let formTag = document.createElement('form');
             let inputTag = document.createElement('input');
@@ -117,20 +117,24 @@ class Chat {
     recieveMessage(e) {
         let response = JSON.parse(e.data);
         let div = document.createElement('div');
-        let message = document.createElement('span');
+        let message = document.createElement('p');
+        let senderName = document.createElement('p');
         let sender = document.createTextNode(response.username + ': ');
         let text = document.createTextNode(response.data);
+
+        senderName.setAttribute('class', 'sendername');
 
         if(response.type !== 'heartbeat'){
             if(response.username === this.chatName){
                 div.setAttribute('class', 'clientmessage')
             }else if(response.username === 'The Server'){
-                div.setAttribute('class', 'servermessage')
+                div.setAttribute('class', 'servermessage');
+                senderName.removeAttribute('class', 'sendername')
             } else{
                 div.setAttribute('class', 'chatreply')
             }
-                                                                        //ToDo save messages as an object, and save to localstorage
-            message.appendChild(sender);
+            senderName.appendChild(sender);                     //ToDo save messages as an object, and save to localstorage
+            message.appendChild(senderName);
             message.appendChild(text);
             div.appendChild(message);
 
