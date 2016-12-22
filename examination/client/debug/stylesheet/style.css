@@ -187,21 +187,21 @@ img{
 }
 
 .chatinput{
-    margin-top: 1.5%;
-    margin-left: 1%;
+    margin-top: 0.5%;
+    margin-left: 2%;
     min-width: 70%;
-    min-height: 22px;
-    max-width: 70%;
-    max-height: 22px;
+    min-height: 40px;
+    max-width: 0%;
+    max-height: 40px;
     float: left;
-    line-height: 25px;
+    line-height: 22px;
 }
 
 input, textarea{
     background-color : #404552;
     color: white;
-    padding: 5px;
-    font-size: 16px;
+    padding: 0px;
+    font-size: 14px;
     font-family: sans-serif;
 }
 
@@ -241,7 +241,7 @@ input, textarea{
 
 .sendername{
     color: white !important;
-    padding: 0;
+    padding: 0 !important;
 }
 
 .chatreply{
@@ -262,6 +262,7 @@ input, textarea{
     color: forestgreen;
     padding: 2%;
     font-size: 14px;
+    padding: 0 !important;
 }
 
 

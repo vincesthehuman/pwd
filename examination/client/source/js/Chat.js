@@ -119,8 +119,9 @@ class Chat {
         let div = document.createElement('div');
         let message = document.createElement('p');
         let senderName = document.createElement('p');
-        let sender = document.createTextNode(response.username + ': ');
+        let sender = document.createTextNode(response.username);
         let text = document.createTextNode(response.data);
+        let textP = document.createElement('p');
 
         senderName.setAttribute('class', 'sendername');
 
@@ -128,14 +129,15 @@ class Chat {
             if(response.username === this.chatName){
                 div.setAttribute('class', 'clientmessage')
             }else if(response.username === 'The Server'){
+                senderName.removeAttribute('class');
                 div.setAttribute('class', 'servermessage');
-                senderName.removeAttribute('class', 'sendername')
             } else{
                 div.setAttribute('class', 'chatreply')
             }
             senderName.appendChild(sender);                     //ToDo save messages as an object, and save to localstorage
             message.appendChild(senderName);
-            message.appendChild(text);
+            textP.appendChild(text);
+            message.appendChild(textP);
             div.appendChild(message);
 
             this.content.firstElementChild.appendChild(div);

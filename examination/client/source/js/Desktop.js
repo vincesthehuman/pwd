@@ -34,7 +34,7 @@ class Desktop {
                     appGui.gui(target);
                 }else if (target.id === 'close'){
                     if(target.parentNode.parentNode.id === 'Chat'){
-                        target.id.socket.close();
+                        console.log('wat');
                     }
                     click.removeChild(target.parentNode.parentNode);
                 }
