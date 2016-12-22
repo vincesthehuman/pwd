@@ -50,14 +50,14 @@ class Chat {
             aTag.addEventListener('click', event =>{
                 let inputValue = this.content.querySelector('input').value;
 
-                if(inputValue.length <= 0 || inputValue.length >= 25){
-                    console.log('the name is either too short or too long dude!')
+                if(inputValue.length <= 0 || inputValue.length >= 25 || inputValue === 'The Server'){
+                    alert('Not a valid username dude!')
                 }else{
                     this.userName = this.content.querySelector('input').value;
                     let chatUsername = {username: this.userName};
                     localStorage.setItem('ChatUser', JSON.stringify(chatUsername));
                     this.chatName = inputValue;
-                    this.content.classList.remove('username');
+                    this.content.classList.remove('enterusername');
                     this.content.textContent = '';
                     this.chatApp();
                 }
@@ -123,11 +123,13 @@ class Chat {
 
         if(response.type !== 'heartbeat'){
             if(response.username === this.chatName){
-                div.setAttribute('class', 'usermessage')
-            }else{
+                div.setAttribute('class', 'clientmessage')
+            }else if(response.username === 'The Server'){
+                div.setAttribute('class', 'servermessage')
+            } else{
                 div.setAttribute('class', 'chatreply')
             }
-
+                                                                        //ToDo save messages as an object, and save to localstorage
             message.appendChild(sender);
             message.appendChild(text);
             div.appendChild(message);

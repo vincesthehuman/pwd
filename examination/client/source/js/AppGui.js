@@ -32,12 +32,9 @@ class AppGui{
         appWindow.style.top =+ 45 * this.allW + 'px';
         appWindow.style.left =+ 105 * this.allW + 'px';
 
-
-        appWindow.style.zIndex = '1';
         appWindow.firstElementChild.style.cursor = 'move';
 
         appWindow.querySelector('.topicon').setAttribute('src', '/image/' + this.targetID + '.png');
-        console.log(appWindow.firstElementChild.id);
 
         this.move(appWindow.firstElementChild);
 
@@ -53,6 +50,8 @@ class AppGui{
     }
     move(selected) {
         selected.addEventListener('mousedown', event =>{
+            selected.parentNode.classList.add('onmousedown');
+
             let windowPosX = parseInt(selected.parentNode.style.left, 10);
             let windowPosY = parseInt(selected.parentNode.style.top, 10);
 
@@ -65,9 +64,11 @@ class AppGui{
                 let moveToY = e.pageY - offsetY;
                 selected.parentNode.style.top = moveToY + 'px';
                 selected.parentNode.style.left = moveToX + 'px';
+
             };
 
             let removeEvent = function(x) {
+                selected.parentNode.classList.remove('onmousedown');
                 document.removeEventListener('mouseup', removeEvent);
                 document.removeEventListener('mousemove', moveWindow);
             };

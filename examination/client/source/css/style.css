@@ -8,46 +8,16 @@ body{
     -ms-user-select: none;
     user-select: none;
 }
+
 div{
     border-radius: 1%;
 }
 
-p {
+p{
     margin:0;
     padding-top: 5px;
     display: block;
     color: #c89d2f;
-}
-
-#wrapper {
-    border-radius: 0;
-    background: url("/image/jakethedog.png") center;
-    background-size: cover;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    position: fixed;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-}
-
-#sidebar {
-    height: 100%;
-    width: 80px;
-    margin: 0;
-    padding: 10px;
-    border-right: solid 5px;
-    background-color: rgba(0, 0, 0, 0.15);
-    position: absolute;
-}
-
-.icon {
-    height: 60px;
-    width: 60px;
-    margin: 10px;
-    border: solid 5px;
 }
 
 a{
@@ -63,11 +33,61 @@ img{
     display: inline-block;
 }
 
-.topicon {
+#wrapper{
+    border-radius: 0;
+    background: url("/image/jakethedog.png") center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    position: fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+}
+
+
+
+
+ /*******SIDEBAR*********/
+
+#sidebar{
+    height: 100%;
+    width: 80px;
+    margin: 0;
+    padding: 10px;
+    border-right: solid 5px;
+    background-color: rgba(0, 0, 0, 0.15);
+    position: absolute;
+    z-index: 100;
+}
+
+.icon{
+    height: 60px;
+    width: 60px;
+    margin: 10px;
+    /*border: solid 5px;*/
+}
+
+.icon img{
+    transition: all ease 0.5s;
+}
+
+.icon:hover img{
+    opacity: 0.3;
+}
+
+
+
+
+/*******WINDOW*********/
+
+.topicon{
     float: left;
 }
 
-.window {
+.window{
     width: 500px;
     height: 600px;
     position: absolute;
@@ -78,24 +98,42 @@ img{
     background-color: #404552;
 }
 
-.topbar {
+.topbar{
     height: 5%;
     background-color: #404552;
     padding: 1%;
     text-align: center;
 }
 
-#close {
+#close{
     cursor: pointer;
 }
 
-.windowcontent {
+#close img{
+    transition: all ease 0.5s;
+}
+
+#close:hover img{
+    opacity: 0.3;
+}
+
+.windowcontent{
     height: 93%;
     background-color: white;
     overflow: hidden;
 }
 
-.username{
+.onmousedown{
+    opacity: 0.8;
+    z-index: 2;
+}
+
+
+
+
+/*******CHAT*********/
+
+.enterusername{
     display: inline-block;
     background-color: white;
     width: 100%;
@@ -147,7 +185,7 @@ img{
     padding: 0;
 }
 
-.chatinput {
+.chatinput{
     margin-top: 1.5%;
     margin-left: 1%;
     min-width: 70%;
@@ -157,11 +195,13 @@ img{
     float: left;
     line-height: 25px;
 }
-input, textarea {
+
+input, textarea{
     background-color : #404552;
     color: white;
     padding: 5px;
     font-size: 16px;
+    font-family: sans-serif;
 }
 
 .sendicon{
@@ -175,7 +215,7 @@ input, textarea {
     margin-bottom: 0;
 }
 
-.usermessage{
+.clientmessage{
     text-align: left;
     margin-right: 18%;
     margin-left: 2%;
@@ -183,7 +223,14 @@ input, textarea {
     padding-top: 4%;
 }
 
-.usermessage span, .chatreply span{
+.chatreply{
+    text-align: right;
+    margin-left: 18%;
+    width: 80%;
+    padding-top: 4%;
+}
+
+.clientmessage span, .chatreply span{
     border-radius: 5px;
     background-color: #F8BF28;
     padding: 2%;
@@ -195,4 +242,22 @@ input, textarea {
     width: 80%;
     padding-top: 4%;
 }
+
+.servermessage{
+    text-align: right;
+    margin-left: 18%;
+    width: 80%;
+    padding-top: 2%;
+}
+
+.servermessage span{
+    color: forestgreen;
+    padding: 2%;
+    font-size: 14px;
+}
+
+
+
+
+/*******Memory*********/
 
