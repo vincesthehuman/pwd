@@ -50,7 +50,10 @@ class AppGui{
     }
     move(selected) {
         selected.addEventListener('mousedown', event =>{
+
             selected.parentNode.classList.add('onmousedown');
+
+            console.log(this.count);
 
             let windowPosX = parseInt(selected.parentNode.style.left, 10);
             let windowPosY = parseInt(selected.parentNode.style.top, 10);

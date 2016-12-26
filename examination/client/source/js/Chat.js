@@ -134,7 +134,7 @@ class Chat {
             } else{
                 div.setAttribute('class', 'chatreply')
             }
-            senderName.appendChild(sender);                     //ToDo save messages as an object, and save to localstorage
+            senderName.appendChild(sender);                     //ToDo save messages as an object, and save to localstorage, add grey styling so one can tell that they are old
             message.appendChild(senderName);
             textP.appendChild(text);
             message.appendChild(textP);
@@ -142,6 +142,7 @@ class Chat {
 
             this.content.firstElementChild.appendChild(div);
         }
+        this.content.firstElementChild.scrollTop = this.content.firstElementChild.scrollHeight;
     }
 
 }
