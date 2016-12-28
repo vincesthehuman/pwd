@@ -5,8 +5,14 @@
 
 'use strict';
 
-const Desktop = require('./Desktop');
+// const Desktop = require('./Desktop');
+//
+// const desktop = new Desktop;
+//
+// desktop.click();
 
-const desktop = new Desktop;
+const NewDesktop = require('./NewDesktop');
 
-desktop.click();
+const Desktop = new NewDesktop();
+
+Desktop.apps();

@@ -1,14 +1,12 @@
 /**
- * Created by vinces on 2016-12-15.
+ * Created by vinces on 2016-12-28.
  */
-'use strict';
-
 const GUI = require('./GUI');
 
-class Memory extends GUI{
+class Settings extends GUI{
     constructor(name, count){
         super(name, count);
     }
 }
 
-module.exports = Memory;
+module.exports = Settings;

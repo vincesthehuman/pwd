@@ -4,6 +4,9 @@
 'use strict';
 
 const AppGui = require('./AppGui');
+const Chat = require('./Chat');
+
+
 
 class Desktop {
     constructor() {

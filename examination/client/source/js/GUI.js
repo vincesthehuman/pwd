@@ -1,53 +1,53 @@
 /**
- * Created by vinces on 2016-12-15.
+ * Created by vinces on 2016-12-27.
  *
- * ToDo Make a gui that all the apps inherits.
+ * * ToDo Make a gui that all the apps inherits.
  */
+
 
 'use strict';
 
-//const Chat = require('./Chat');
-
-class AppGui{
-    constructor(windowCount, allWindows, targetID) {
-        this.id = document.querySelector('#wrapper');
-        this.windows = windowCount;
-        this.allW = allWindows;
-        this.windowApp = targetID;
+class GUI{
+    constructor(windowApp, counter) {
+        this.windowApp = windowApp;
+        this.counter = counter;
+        this.wrapper = document.querySelector('#wrapper');
+        this.gui();
     }
 
-    gui(name){
+    gui(){
         let template = document.querySelector('#wrapper template');
         let appWindow = document.importNode(template.content.firstElementChild, true);
 
         let pTag = document.createElement('p');
-        let pText = document.createTextNode(name.id + ' ' + this.windows);
+        let pText = document.createTextNode(this.windowApp);
         pTag.appendChild(pText);
 
-        appWindow.setAttribute('id', name.id + ' ' + this.windows);
-        appWindow.querySelector('.topbar').setAttribute('id', 'window ' + name.id + ' ' + this.windows);
+        appWindow.setAttribute('id', this.windowApp + this.counter);
+        appWindow.querySelector('.topbar').setAttribute('id', 'window ' + this.windowApp);
         appWindow.querySelector('.topbar').appendChild(pTag);
 
-        appWindow.style.top =+ 45 * this.allW + 'px';
-        appWindow.style.left =+ 105 * this.allW + 'px';
+        appWindow.style.top =+ 45 + 'px';
+        appWindow.style.left =+ 105 + 'px';
 
         appWindow.firstElementChild.style.cursor = 'move';
 
         appWindow.querySelector('.topicon').setAttribute('src', '/image/' + this.windowApp + '.png');
 
+
+        appWindow.querySelector('#close').addEventListener('click', event =>{
+            this.close(event.target);
+        });
+
         this.move(appWindow.firstElementChild);
 
-        this.id.appendChild(appWindow);
-
-        // if(this.targetID === 'Game'){
-        //     console.log('hello Gamer')
-        // }else if(this.targetID === 'Chat'){
-        //     const chatWindow = new Chat(appWindow.id);
-        //     chatWindow.enterName();
-        // }
+        this.wrapper.appendChild(appWindow);
 
     }
-    move(selected) {
+    close(node) {       //Removes the parent node of the parent node (the Window selected)
+        node.parentNode.parentNode.parentNode.removeChild(node.parentNode.parentNode);
+    }
+    move(selected) {    //Makes it possible for the user to move the window
         selected.addEventListener('mousedown', event =>{
 
             selected.parentNode.classList.add('onmousedown');
@@ -58,7 +58,7 @@ class AppGui{
             let offsetX = event.pageX - windowPosX;
             let offsetY = event.pageY - windowPosY;
 
-            let moveWindow = function (e) {
+            let moveWindow = function(e) {
 
                 let moveToX = e.pageX - offsetX;
                 let moveToY = e.pageY - offsetY;
@@ -80,4 +80,4 @@ class AppGui{
 
 }
 
-module.exports = AppGui;
+module.exports = GUI;

@@ -1,18 +1,18 @@
 /**
- * Created by vinces on 2016-12-15.
+ * Created by vinces on 2016-12-28.
  *
  * ToDo close socket when window is closed
  */
-
 'use strict';
 
 const GUI = require('./GUI');
 
-class Chat{
-    constructor(content){
-        let appGui = new GUI();
-        this.content = document.getElementById(content).lastElementChild;
+class Chat extends GUI{
+    constructor(name, count){
+        super(name, count);
+        this.content = document.getElementById(name+count).lastElementChild;
         this.chatName = '';
+        this.enterName();
     }
     enterName() {
         let userName = localStorage.getItem('ChatUser');
