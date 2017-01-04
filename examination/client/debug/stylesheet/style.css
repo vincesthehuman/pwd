@@ -191,7 +191,7 @@ img{
     margin-left: 2%;
     min-width: 70%;
     min-height: 40px;
-    max-width: 0%;
+    max-width: 0;
     max-height: 40px;
     float: left;
     line-height: 22px;
@@ -200,7 +200,7 @@ img{
 input, textarea{
     background-color : #404552;
     color: white;
-    padding: 0px;
+    padding: 0;
     font-size: 14px;
     font-family: sans-serif;
 }
@@ -229,6 +229,7 @@ input, textarea{
     margin-left: 18%;
     width: 80%;
     padding-bottom: 1%;
+    padding-top: 0;
 }
 
 .clientmessage p, .chatreply p{
@@ -244,13 +245,6 @@ input, textarea{
     padding: 0 !important;
 }
 
-.chatreply{
-    text-align: right;
-    margin-left: 18%;
-    width: 80%;
-    padding-top: 4%;
-}
-
 .servermessage{
     text-align: right;
     margin-left: 18%;
@@ -260,7 +254,6 @@ input, textarea{
 
 .servermessage p{
     color: forestgreen;
-    padding: 2%;
     font-size: 14px;
     padding: 0 !important;
 }

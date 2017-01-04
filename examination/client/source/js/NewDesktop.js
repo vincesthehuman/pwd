@@ -19,22 +19,18 @@ class NewDesktop {
         let settings = sidebar.querySelector('#Settings');
 
 
-        chat.addEventListener('click', event =>{
+        chat.addEventListener('click', event =>{                                //Creates a new chat upon a click, chat will inherit structure from AppGui creating a new chat window
             let chat = new Chat(event.target.parentNode.id, this.windowAppCounter.length);
-
-            // ToDO Create a new chat upon a click, chat will inherit structure from AppGui creating a new chat window
         });
 
         game.addEventListener('click', event =>{
             let game = new Game(event.target.parentNode.id);
             // ToDO Create a new game upon a click, game will inherit structure from AppGui creating a new game window
-
         });
 
         settings.addEventListener('click', event => {
             let settings = new Settings(event.target.parentNode.id);
             // ToDO Create a new Settings upon a click, settings will inherit structure from AppGui creating a new settings window
-
         });
     }
 }
