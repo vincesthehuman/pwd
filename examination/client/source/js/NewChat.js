@@ -120,7 +120,7 @@ class Chat extends GUI{
 
     }
 
-    secretLang(text) {
+    secretLang(text) {                  //The message turns into a 'secret' message
 
         let konsonanter = ['B', 'b', 'C', 'c', 'D', 'd', 'F', 'f', 'G', 'g', 'H', 'h', 'J', 'j', 'K', 'k', 'L', 'l', 'M', 'm',
                            'N', 'n', 'P', 'p', 'Q', 'q', 'R', 'r', 'S', 's',  'T', 't', 'V', 'v', 'W', 'w', 'X', 'x', 'Z', 'z'];
@@ -130,7 +130,7 @@ class Chat extends GUI{
         for(let i = 0; i < text.length; i ++){
             for(let j = 0; j < konsonanter.length; j ++){
                 if(text[i] === konsonanter[j]){
-                    newString += text[i] + 'o';
+                    newString += text[i] + 'o';             //Adds an 'o' to all consonants
                 }
             }
             newString += text[i];
@@ -139,7 +139,7 @@ class Chat extends GUI{
     }
 
     sendMessage(input){                                                                                                 //Sends the message as JSON via websocket
-        this.clientUserName = localStorage.getItem('ChatUser');                                                                //Checks the username every time a message is sent
+        this.clientUserName = localStorage.getItem('ChatUser');                                                         //Checks the username every time a message is sent
         this.clientUserName = JSON.parse(this.clientUserName);
         if (this.secretLangOption === false){
             input = this.secretLang(input);
