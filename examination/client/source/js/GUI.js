@@ -34,8 +34,11 @@ class GUI{
 
         appWindow.querySelector('.topicon').setAttribute('src', '/image/' + this.windowApp + '.png');
 
+        if(this.windowApp === 'Game' || this.windowApp === 'Chat'){                            //Adds a settings option
+            this.appSettings(appWindow);
+        }
 
-        appWindow.querySelector('#close').addEventListener('click', event =>{
+        appWindow.querySelector('#close').addEventListener('click', event =>{                  //Adds a function to close window
             this.close(event.target);
         });
 
@@ -46,6 +49,26 @@ class GUI{
     }
     close(node) {       //Removes the parent node of the parent node (the Window selected)
         node.parentNode.parentNode.parentNode.removeChild(node.parentNode.parentNode);
+    }
+    appSettings(position) {
+        position.querySelector('#' + this.windowApp + 'Settings').setAttribute('src', '/image/Settings.png');
+
+        let onClick = position.querySelector('#' + this.windowApp + 'Settings').parentNode;
+
+        onClick.addEventListener('click', event => {
+            if(this.windowApp === 'Chat'){
+                this.chatSettings();
+            }else{
+                this.gameSettings();
+            }
+
+        })                          //Creates settings depending on which window that is being created
+    }
+    chatSettings(){
+        console.log('Hello chatsettings')
+    }
+    gameSettings(){
+        console.log('Helloooo game settings!')
     }
     move(selected) {    //Makes it possible for the user to move the window
         selected.addEventListener('mousedown', event =>{

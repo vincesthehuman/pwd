@@ -11,6 +11,7 @@ class Chat extends GUI{
     constructor(name, count){
         super(name, count);
         this.content = document.getElementById(name+count).lastElementChild;                                            //Lets the app know which window is which
+        this.topBar = document.getElementById(name+count).firstElementChild;                                            //The topbar of the chat-app
         this.chatName = '';
         this.clientUserName = '';
         this.enterName();
@@ -78,23 +79,23 @@ class Chat extends GUI{
         let formDiv = document.createElement('div');
         let formTag = document.createElement('form');
         let inputTag = document.createElement('textarea');                                                              //Creates elements necessary for the chat-app
-        let img = document.createElement('img');
-        let aTag = document.createElement('a');
+        let sendImg = document.createElement('img');
+        let sendATag = document.createElement('a');
         this.textField = document.createElement('div');
 
         this.textField.setAttribute('class', 'textfield');                                                              //Adds styling
         formDiv.setAttribute('class', 'chatStyles');
         formTag.setAttribute('class', 'formstyle');
         inputTag.setAttribute('class', 'chatinput');
-        aTag.setAttribute('href', '#');
-        aTag.setAttribute('class', 'sendicon');                                                                         //Takes a image and uses it to send messages
-        img.setAttribute('src', '/image/send.png');
+        sendATag.setAttribute('href', '#');
+        sendATag.setAttribute('class', 'sendicon');                                                                         //Takes a image and uses it to send messages
+        sendImg.setAttribute('src', '/image/send.png');
 
         this.content.appendChild(this.textField);
         formTag.appendChild(inputTag);
         formDiv.appendChild(formTag);                                                                                   //Appends all the newly created elements
-        aTag.appendChild(img);
-        formDiv.appendChild(aTag);
+        sendATag.appendChild(sendImg);
+        formDiv.appendChild(sendATag);
         this.content.appendChild(formDiv);
 
         inputTag.addEventListener('keydown', event =>{                                                                    //Adds an event listener to the enter-key when typing, send the message when pressed
@@ -109,7 +110,7 @@ class Chat extends GUI{
             }
         });
 
-        aTag.addEventListener('click', event =>{                                                                        //Adds an event listener to the send icon to send message
+        sendATag.addEventListener('click', event =>{                                                                        //Adds an event listener to the send icon to send message
             let clearInput = this.content.querySelector('textarea');
             let inputValue = clearInput.value;
             if(inputValue.length > 0){
