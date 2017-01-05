@@ -47,9 +47,11 @@ class GUI{
         this.wrapper.appendChild(appWindow);
 
     }
+
     close(node) {       //Removes the parent node of the parent node (the Window selected)
         node.parentNode.parentNode.parentNode.removeChild(node.parentNode.parentNode);
     }
+
     appSettings(position) {
         position.querySelector('#' + this.windowApp + 'Settings').setAttribute('src', '/image/Settings.png');
 
@@ -62,14 +64,17 @@ class GUI{
                 this.gameSettings();
             }
 
-        })                          //Creates settings depending on which window that is being created
+        });                          //Creates settings depending on which window that is being created
     }
+
     chatSettings(){
         console.log('Hello chatsettings')
     }
+
     gameSettings(){
         console.log('Helloooo game settings!')
     }
+
     move(selected) {    //Makes it possible for the user to move the window
         selected.addEventListener('mousedown', event =>{
 

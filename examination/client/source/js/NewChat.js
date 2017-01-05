@@ -142,7 +142,7 @@ class Chat extends GUI{
     sendMessage(input){                                                                                                 //Sends the message as JSON via websocket
         this.clientUserName = localStorage.getItem('ChatUser');                                                         //Checks the username every time a message is sent
         this.clientUserName = JSON.parse(this.clientUserName);
-        if (this.secretLangOption === false){
+        if (this.secretLangOption === true){
             input = this.secretLang(input);
         }
         let message = {
@@ -174,7 +174,7 @@ class Chat extends GUI{
             } else{                                                                                                     //Adds a class to the replies with names not equal to the client username
                 div.setAttribute('class', 'chatreply')
             }
-            senderName.appendChild(sender);                     //ToDo save messages as an object, and save to localstorage, add grey styling so one can tell that they are old
+            senderName.appendChild(sender);
             message.appendChild(senderName);
             textP.appendChild(text);
             message.appendChild(textP);

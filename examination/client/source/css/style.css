@@ -105,6 +105,18 @@ img{
     text-align: center;
 }
 
+.appsettings{
+    cursor: pointer;
+}
+
+.appsettings img{
+    transition: all ease 0.5s;
+}
+
+.appsettings:hover img{
+    opacity: 0.3;
+}
+
 #close{
     cursor: pointer;
 }
@@ -214,6 +226,13 @@ input, textarea{
 .sendicon img{
     height: 100%;
     margin-bottom: 0;
+    transition: all ease 0.5s;
+    margin-right: 10px;
+}
+
+.sendicon:hover img{
+    opacity: 0.3;
+    margin-right: 0;
 }
 
 .clientmessage{
