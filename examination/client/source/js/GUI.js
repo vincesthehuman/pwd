@@ -24,7 +24,7 @@ class GUI{
         pTag.appendChild(pText);
 
         appWindow.setAttribute('id', this.windowApp + this.counter);
-        appWindow.querySelector('.topbar').setAttribute('id', 'window ' + this.windowApp);
+        this.topBar = appWindow.querySelector('.topbar').setAttribute('id', 'window ' + this.windowApp);
         appWindow.querySelector('.topbar').appendChild(pTag);
 
         appWindow.style.top =+ 45 + 'px';
@@ -53,22 +53,8 @@ class GUI{
     }
 
     appSettings(position) {
-        position.querySelector('#' + this.windowApp + 'Settings').setAttribute('src', '/image/Settings.png');
-
-        let onClick = position.querySelector('#' + this.windowApp + 'Settings').parentNode;
-
-        onClick.addEventListener('click', event => {
-            if(this.windowApp === 'Chat'){
-                this.chatSettings();
-            }else{
-                this.gameSettings();
-            }
-
-        });                          //Creates settings depending on which window that is being created
-    }
-
-    chatSettings(){
-        console.log('Hello chatsettings')
+        position.querySelector('.appsettings').setAttribute('id', this.windowApp + this.counter);
+        position.querySelector('.appsettings').firstChild.setAttribute('src', '/image/Settings.png');
     }
 
     gameSettings(){

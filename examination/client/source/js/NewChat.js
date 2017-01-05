@@ -88,7 +88,7 @@ class Chat extends GUI{
         formTag.setAttribute('class', 'formstyle');
         inputTag.setAttribute('class', 'chatinput');
         sendATag.setAttribute('href', '#');
-        sendATag.setAttribute('class', 'sendicon');                                                                         //Takes a image and uses it to send messages
+        sendATag.setAttribute('class', 'sendicon');                                                                     //Takes a image and uses it to send messages
         sendImg.setAttribute('src', '/image/send.png');
 
         this.content.appendChild(this.textField);
@@ -98,7 +98,9 @@ class Chat extends GUI{
         formDiv.appendChild(sendATag);
         this.content.appendChild(formDiv);
 
-        inputTag.addEventListener('keydown', event =>{                                                                    //Adds an event listener to the enter-key when typing, send the message when pressed
+        this.chatSettings();
+
+        inputTag.addEventListener('keydown', event =>{                                                                  //Adds an event listener to the enter-key when typing, send the message when pressed
             if (event.which === 13){
                 event.preventDefault();
                 let clearInput = this.content.querySelector('textarea');
@@ -119,6 +121,28 @@ class Chat extends GUI{
             }
         })
 
+    }
+
+    chatSettings(){
+        let count = 1;
+        this.topBar.querySelector('.appsettings').addEventListener('click', event =>{
+            count += 1;
+            if(count % 2 === 0){
+                let chatSettingsDiv = document.createElement('div');
+                let pTag = document.createElement('p');
+                let text = document.createTextNode('text test');
+
+                chatSettingsDiv.setAttribute('class', 'chatsettings');
+
+                pTag.appendChild(text);
+                chatSettingsDiv.appendChild(pTag);
+
+                document.getElementById(this.topBar.parentNode.id).appendChild(chatSettingsDiv);
+            }else{
+                let parent = this.topBar.parentNode;
+                parent.querySelector('.chatsettings').remove();
+            }
+        })
     }
 
     secretLang(text) {                  //The message turns into a 'secret' message

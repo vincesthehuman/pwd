@@ -277,6 +277,15 @@ input, textarea{
     padding: 0 !important;
 }
 
+.chatsettings {
+    display: inline-block;
+    float: right;
+    width: 20px;
+    height: 50px;
+    margin-right: -50px;
+    background-color: white;
+}
+
 
 
 
