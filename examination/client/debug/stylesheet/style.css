@@ -259,6 +259,11 @@ input, textarea{
     color: black;
 }
 
+.messagecontent{
+    word-break: break-all;
+}
+
+
 .sendername{
     color: white !important;
     padding: 0 !important;
@@ -280,9 +285,9 @@ input, textarea{
 .chatsettings {
     display: inline-block;
     float: right;
-    width: 20px;
-    height: 50px;
-    margin-right: -50px;
+    width: 200px;
+    height: 100px;
+    margin-right: -205px;
     background-color: white;
 }
 

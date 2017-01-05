@@ -98,7 +98,7 @@ class Chat extends GUI{
         formDiv.appendChild(sendATag);
         this.content.appendChild(formDiv);
 
-        this.chatSettings();
+        this.createChatSettings();
 
         inputTag.addEventListener('keydown', event =>{                                                                  //Adds an event listener to the enter-key when typing, send the message when pressed
             if (event.which === 13){
@@ -123,26 +123,40 @@ class Chat extends GUI{
 
     }
 
-    chatSettings(){
+    createChatSettings(){
         let count = 1;
         this.topBar.querySelector('.appsettings').addEventListener('click', event =>{
             count += 1;
             if(count % 2 === 0){
                 let chatSettingsDiv = document.createElement('div');
-                let pTag = document.createElement('p');
-                let text = document.createTextNode('text test');
+                let rovarsprak = document.createElement('input');
+                let label = document.createElement('label');
 
+                label.appendChild(document.createTextNode('Rövarspråk'));
+                rovarsprak.setAttribute('type', 'checkbox');
+                rovarsprak.setAttribute('name', 'Rövarspråk');
+                rovarsprak.setAttribute('value', 'true');
+                rovarsprak.setAttribute('id', 'rovarsprak');
                 chatSettingsDiv.setAttribute('class', 'chatsettings');
 
-                pTag.appendChild(text);
-                chatSettingsDiv.appendChild(pTag);
+                chatSettingsDiv.appendChild(rovarsprak);
+                chatSettingsDiv.appendChild(label);
 
-                document.getElementById(this.topBar.parentNode.id).appendChild(chatSettingsDiv);
+                let parentNode = this.topBar.parentNode;
+
+                let children = parentNode.childNodes;
+
+                parentNode.insertBefore(chatSettingsDiv, children[0]);
+
             }else{
                 let parent = this.topBar.parentNode;
                 parent.querySelector('.chatsettings').remove();
             }
         })
+    }
+
+    chatSettings() {
+
     }
 
     secretLang(text) {                  //The message turns into a 'secret' message
@@ -187,6 +201,7 @@ class Chat extends GUI{
         let text = document.createTextNode(response.data);
         let textP = document.createElement('p');
 
+        textP.setAttribute('class', 'messagecontent');
         senderName.setAttribute('class', 'sendername');
 
         if(response.type !== 'heartbeat'){
@@ -200,6 +215,7 @@ class Chat extends GUI{
             }
             senderName.appendChild(sender);
             message.appendChild(senderName);
+
             textP.appendChild(text);
             message.appendChild(textP);
             div.appendChild(message);
