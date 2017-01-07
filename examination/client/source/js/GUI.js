@@ -29,6 +29,7 @@ class GUI{
 
         appWindow.style.top =+ 45 * (this.counter + 1) + 'px';
         appWindow.style.left =+ 105 * (this.counter + 1) + 'px';
+        appWindow.style.zIndex = this.counter;
 
         appWindow.firstElementChild.style.cursor = 'move';
 
@@ -72,15 +73,26 @@ class GUI{
             let offsetX = event.pageX - windowPosX;
             let offsetY = event.pageY - windowPosY;
 
-            let moveWindow = function(e) {
+            let moveWindow = e => {
                 let moveToX = e.pageX - offsetX;
                 let moveToY = e.pageY - offsetY;
                 selected.parentNode.style.top = moveToY + 'px';
                 selected.parentNode.style.left = moveToX + 'px';
             };
 
-            let removeEvent = function(x) {
+            let removeEvent = x => {
                 selected.parentNode.classList.remove('onmousedown');
+                let removeZindex = document.getElementsByClassName('window');       //Counts all open windows in the wrapper
+
+                let zIndexCount = 0;
+                for(let i = 0; i < removeZindex.length; i ++){                      //Gives a new z-index
+                    let foo = removeZindex[i].style.zIndex;
+
+                    if(parseInt(foo) > zIndexCount){                                //If
+                        zIndexCount = parseInt(foo);
+                    }
+                }
+                selected.parentNode.style.zIndex = zIndexCount + 1;
                 document.removeEventListener('mouseup', removeEvent);
                 document.removeEventListener('mousemove', moveWindow);
             };
