@@ -142,6 +142,18 @@ class Chat extends GUI{
                 chatSettingsDiv.appendChild(rovarsprak);
                 chatSettingsDiv.appendChild(label);
 
+                if(this.secretLangOption === true){                     //Checks if Rövarspråk is true, then the box should be checked
+                    rovarsprak.setAttribute('checked', 'true');
+                }
+
+                rovarsprak.addEventListener('click', event =>{
+                    if(rovarsprak.checked === true){
+                        this.secretLangOption = true;
+                    }else{
+                        this.secretLangOption = false;
+                    }
+                });
+
                 let parentNode = this.topBar.parentNode;
 
                 let children = parentNode.childNodes;
@@ -150,13 +162,9 @@ class Chat extends GUI{
 
             }else{
                 let parent = this.topBar.parentNode;
-                parent.querySelector('.chatsettings').remove();
+                parent.querySelector('.chatsettings').style.display = 'none';
             }
         })
-    }
-
-    chatSettings() {
-
     }
 
     secretLang(text) {                  //The message turns into a 'secret' message

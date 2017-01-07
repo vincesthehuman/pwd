@@ -27,8 +27,8 @@ class GUI{
         this.topBar = appWindow.querySelector('.topbar').setAttribute('id', 'window ' + this.windowApp);
         appWindow.querySelector('.topbar').appendChild(pTag);
 
-        appWindow.style.top =+ 45 + 'px';
-        appWindow.style.left =+ 105 + 'px';
+        appWindow.style.top =+ 45 * (this.counter + 1) + 'px';
+        appWindow.style.left =+ 105 * (this.counter + 1) + 'px';
 
         appWindow.firstElementChild.style.cursor = 'move';
 
@@ -73,12 +73,10 @@ class GUI{
             let offsetY = event.pageY - windowPosY;
 
             let moveWindow = function(e) {
-
                 let moveToX = e.pageX - offsetX;
                 let moveToY = e.pageY - offsetY;
                 selected.parentNode.style.top = moveToY + 'px';
                 selected.parentNode.style.left = moveToX + 'px';
-
             };
 
             let removeEvent = function(x) {

@@ -24,7 +24,7 @@ class NewDesktop {
         });
 
         game.addEventListener('click', event =>{
-            let game = new Game(event.target.parentNode.id);
+            let game = new Game(event.target.parentNode.id, this.windowAppCounter.length);
             // ToDO Create a new game upon a click, game will inherit structure from AppGui creating a new game window
         });
 
