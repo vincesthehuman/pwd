@@ -137,7 +137,7 @@ img{
 
 .onmousedown{
     opacity: 0.8;
-    z-index: 1000000000;
+    z-index: 111;
 }
 
 .topwindow{
@@ -300,3 +300,10 @@ input, textarea{
 
 /*******Memory*********/
 
+.windowcontent a {
+    height: 100px;
+}
+
+.pair{
+    visibility: hidden;
+}
