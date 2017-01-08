@@ -300,8 +300,13 @@ input, textarea{
 
 /*******Memory*********/
 
-.windowcontent a {
+.game {
+    float: left;
+}
+
+.memorybrick {
     height: 100px;
+    float: none;
 }
 
 .pair{

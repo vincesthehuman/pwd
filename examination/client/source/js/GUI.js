@@ -16,7 +16,7 @@ class GUI{
     }
 
     gui(){
-        let template = document.querySelector('#wrapper template');
+        let template = document.querySelectorAll('template')[0];
         let appWindow = document.importNode(template.content.firstElementChild, true);
 
         let pTag = document.createElement('p');
@@ -56,10 +56,6 @@ class GUI{
     appSettings(position) {
         position.querySelector('.appsettings').setAttribute('id', this.windowApp + this.counter);
         position.querySelector('.appsettings').firstChild.setAttribute('src', '/image/Settings.png');
-    }
-
-    gameSettings(){
-        console.log('Helloooo game settings!')
     }
 
     move(selected) {    //Makes it possible for the user to move the window

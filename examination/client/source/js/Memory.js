@@ -8,11 +8,11 @@ const GUI = require('./GUI');
 class Memory extends GUI{
     constructor(name, count){
         super(name, count);
-        let content = document.getElementById(name+count).lastElementChild;
-        this.rows = 4;
+        this.content = document.getElementById(name+count).lastElementChild;
+        this.rows =4;
         this.cols = 4;
-        let tiles = this.picArray(4, 4);
-        this.gameBoard(4, content, tiles);
+        this.tiles = this.picArray(this.rows, this.cols);
+        this.gameBoard(4, this.content, this.tiles);
         this.turn1;
         this.turn2;
         this.lastTile;
@@ -22,19 +22,21 @@ class Memory extends GUI{
 
     gameBoard(cols, container, tiles) {
         let aTag;
-        // container = document.getElementById(container);
-        let template = document.querySelectorAll('#memoryContainer template')[0].content.firstElementChild;
+
+        let template = document.querySelectorAll('template')[1].content.firstElementChild;
 
         for(let i = 0; i < tiles.length; i++){
             aTag = document.importNode(template.firstElementChild, true);
 
             container.appendChild(aTag);
+            aTag.setAttribute('class', 'memorybrick');
 
             let tile = tiles[i];
 
             aTag.addEventListener('click', event =>{
-                let img = event.target.nodeName === 'IMG' ? event : event.firstElementChild;
-                this.turnBrick(tile, event.target)
+                let img = event.target.firstChild.nodeName === 'IMG' ? event : event.firstChild;
+
+                this.turnBrick(tile, event.target.firstChild);
             });
 
             if((i + 1) % cols === 0){
@@ -63,12 +65,11 @@ class Memory extends GUI{
     }
 
     turnBrick(tile, img) {
-
         if(this.turn2){
             return;
         }
 
-        img.src = 'image/' + tile + '.png';
+        img.src = '/image/' + tile + '.png';
 
         if(!this.turn1){
             this.turn1 = img;
@@ -97,10 +98,11 @@ class Memory extends GUI{
 
                 },500);
 
+
             }else{
                 window.setTimeout( e =>{
-                    this.turn1.src = 'image/0.png';
-                    this.turn2.src = 'image/0.png';
+                    this.turn1.src = '/image/0.png';
+                    this.turn2.src = '/image/0.png';
 
                     this.turn1 = null;
                     this.turn2 = null;
