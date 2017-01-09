@@ -57,7 +57,11 @@ class Chat extends GUI{
                 let inputValue = this.content.querySelector('input').value;
 
                 if(inputValue.length <= 0 || inputValue.length >= 25 || inputValue === 'The Server'){
-                    alert('Not a valid username dude!')
+                    let text = document.createTextNode('Not a valid username!');
+                    let p = document.createElement('p');
+
+                    p.appendChild(text);
+                    this.content.appendChild(p);
                 }else{
                     this.userName = this.content.querySelector('input').value;
                     let chatUsername = {username: this.userName};
@@ -194,6 +198,7 @@ class Chat extends GUI{
     sendMessage(input){                                                                                                 //Sends the message as JSON via websocket
         this.clientUserName = localStorage.getItem('ChatUser');                                                         //Checks the username every time a message is sent
         this.clientUserName = JSON.parse(this.clientUserName);
+
         if (this.secretLangOption === true){
             input = this.secretLang(input);
         }

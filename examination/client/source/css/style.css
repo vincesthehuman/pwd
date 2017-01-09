@@ -303,6 +303,10 @@ input, textarea{
     margin-left: 5px;
 }
 
+.usernameNotSet{
+    color: red;
+}
+
 
 
 
@@ -334,4 +338,25 @@ input, textarea{
 
 .gamesettings p {
     margin: 5px;
+}
+
+
+
+
+
+.settingsContent {
+    text-align: left;
+    padding: 10px;
+}
+
+.settingsContent div {
+    display: inline-block;
+}
+
+.settingsContent p {
+    margin-bottom: 5px;
+}
+
+#newUsername {
+    height: 30px;
 }

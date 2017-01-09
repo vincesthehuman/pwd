@@ -22,12 +22,12 @@ class Memory extends GUI{
 
     gameBoard(cols, container, tiles) {
         container.textContent = '';
+
         let aTag;
-
         let template = document.querySelectorAll('template')[1].content.firstElementChild;
-
         let scoreTemplate = document.querySelectorAll('template')[4].content.firstElementChild;
         let divScore = document.importNode(scoreTemplate.firstElementChild, true);
+
         container.appendChild(divScore);
 
         for(let i = 0; i < tiles.length; i++){

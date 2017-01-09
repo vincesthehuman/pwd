@@ -9,41 +9,41 @@
 
 class GUI{
     constructor(windowApp, counter) {
-        this.windowApp = windowApp;
-        this.counter = counter;
+        this.windowApp = windowApp;             //What type of window is being created
+        this.counter = counter;                 //A counter for how many windows there are
         this.wrapper = document.querySelector('#wrapper');
         this.gui();
     }
 
     gui(){
         let template = document.querySelectorAll('template')[0];
-        let appWindow = document.importNode(template.content.firstElementChild, true);
+        let appWindow = document.importNode(template.content.firstElementChild, true);      //Selects the first template and imports it from the index.html
 
         let pTag = document.createElement('p');
-        let pText = document.createTextNode(this.windowApp);
+        let pText = document.createTextNode(this.windowApp);    //The name of the window
         pTag.appendChild(pText);
 
-        appWindow.setAttribute('id', this.windowApp + this.counter);
-        this.topBar = appWindow.querySelector('.topbar').setAttribute('id', 'window ' + this.windowApp);
+        appWindow.setAttribute('id', this.windowApp + this.counter);                                        //The window is given an id, with type and a number
+        this.topBar = appWindow.querySelector('.topbar').setAttribute('id', 'window ' + this.windowApp);    //The windows topbar gets a similar id
         appWindow.querySelector('.topbar').appendChild(pTag);
 
         appWindow.style.top =+ 45 * (this.counter + 1) + 'px';
-        appWindow.style.left =+ 105 * (this.counter + 1) + 'px';
+        appWindow.style.left =+ 105 * (this.counter + 1) + 'px';    //Adds a "bounce" to the windows
         appWindow.style.zIndex = this.counter;
 
         appWindow.firstElementChild.style.cursor = 'move';
 
-        appWindow.querySelector('.topicon').setAttribute('src', '/image/' + this.windowApp + '.png');
+        appWindow.querySelector('.topicon').setAttribute('src', '/image/' + this.windowApp + '.png');       //The icon corresponds to the type of window that is choosen
 
         if(this.windowApp === 'Game' || this.windowApp === 'Chat'){                            //Adds a settings option
             this.appSettings(appWindow);
         }
 
-        appWindow.querySelector('#close').addEventListener('click', event =>{                  //Adds a function to close window
+        appWindow.querySelector('#close').addEventListener('click', event =>{                  //Adds the function to close a window
             this.close(event.target);
         });
 
-        this.move(appWindow.firstElementChild);
+        this.move(appWindow.firstElementChild);                                                 //Adds the function to move a window
 
         this.wrapper.appendChild(appWindow);
 
@@ -55,7 +55,7 @@ class GUI{
 
     appSettings(position) {
         position.querySelector('.appsettings').setAttribute('id', this.windowApp + this.counter);
-        position.querySelector('.appsettings').firstChild.setAttribute('src', '/image/Settings.png');
+        position.querySelector('.appsettings').firstChild.setAttribute('src', '/image/Settings.png');   //Adds the settings icon
     }
 
     move(selected) {    //Makes it possible for the user to move the window
@@ -64,10 +64,10 @@ class GUI{
             selected.parentNode.classList.add('onmousedown');
 
             let windowPosX = parseInt(selected.parentNode.style.left, 10);
-            let windowPosY = parseInt(selected.parentNode.style.top, 10);
+            let windowPosY = parseInt(selected.parentNode.style.top, 10);  //Sets the styling of the selected window
 
             let offsetX = event.pageX - windowPosX;
-            let offsetY = event.pageY - windowPosY;
+            let offsetY = event.pageY - windowPosY;                         //The offset is calculated so that the windows top left corner doesn't "jump" to pointer
 
             let moveWindow = e => {
                 let moveToX = e.pageX - offsetX;
@@ -84,7 +84,7 @@ class GUI{
                 for(let i = 0; i < removeZindex.length; i ++){                      //Gives a new z-index
                     let foo = removeZindex[i].style.zIndex;
 
-                    if(parseInt(foo) > zIndexCount){                                //If
+                    if(parseInt(foo) > zIndexCount){                                //If the zindex of the clicked window is higher than the zindex counter, z index counter gets a new value
                         zIndexCount = parseInt(foo);
                     }
                 }
