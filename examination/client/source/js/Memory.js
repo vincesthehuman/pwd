@@ -9,15 +9,15 @@ class Memory extends GUI{
     constructor(name, count){
         super(name, count);
         this.content = document.getElementById(name+count).lastElementChild;
-        this.rows =4;
-        this.cols = 4;
-        this.tiles = this.picArray(this.rows, this.cols);
-        this.gameBoard(4, this.content, this.tiles);
+        this.topBar = document.getElementById(name+count).firstElementChild;            //The topbar of the game-app
+        this.rows = 0;
+        this.cols = 0;
         this.turn1;
         this.turn2;
         this.lastTile;
         this.pairs = 0;
         this.tries = 0;
+        this.createGameSettings();
     }
 
     gameBoard(cols, container, tiles) {
@@ -109,6 +109,52 @@ class Memory extends GUI{
                 }, 500)
             }
         }
+    }
+
+    createGameSettings(){
+        if(this.rows === 0){
+            this.startGame();
+        }
+        let count = 0;
+        this.topBar.querySelector('.appsettings').addEventListener('click', event =>{
+            count += 1;
+            if(count === 1){
+                let template = document.querySelectorAll('template')[2].content.firstElementChild;
+                let div = document.importNode(template, true);
+
+                div.addEventListener('click', event => {
+                    if(event.target.value === undefined){
+                        return;
+                    }
+                    this.content.textContent = '';
+                    this.pairs = 0;
+                    this.tries = 0;
+                    this.turn1 = null;
+                    this.turn2 = null;
+                    this.lastTile = null;
+                    this.rows = event.target.value[0];
+                    this.cols = event.target.value[1];
+                    this.tiles = this.picArray(this.rows, this.cols);
+                    this.gameBoard(this.cols, this.content, this.tiles);
+                });
+
+                let parentNode = this.topBar.parentNode;
+                let children = parentNode.childNodes;
+                parentNode.insertBefore(div, children[0]);
+
+            }else if(count % 2 === 0){
+                let parent = this.topBar.parentNode;
+                parent.querySelector('.gamesettings').style.display = 'none';
+            }else{
+                let parent = this.topBar.parentNode;
+                parent.querySelector('.gamesettings').style.display = 'inline-block';
+            }
+
+        })
+    }
+
+    startGame() {
+        console.log('hello first game!')
     }
 
 }

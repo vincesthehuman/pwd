@@ -12,6 +12,7 @@ class Chat extends GUI{
         super(name, count);
         this.content = document.getElementById(name+count).lastElementChild;                                            //Lets the app know which window is which
         this.topBar = document.getElementById(name+count).firstElementChild;                                            //The topbar of the chat-app
+        this.createChatSettings();
         this.chatName = '';
         this.clientUserName = '';
         this.enterName();
@@ -98,8 +99,6 @@ class Chat extends GUI{
         formDiv.appendChild(sendATag);
         this.content.appendChild(formDiv);
 
-        this.createChatSettings();
-
         inputTag.addEventListener('keydown', event =>{                                                                  //Adds an event listener to the enter-key when typing, send the message when pressed
             if (event.which === 13){
                 event.preventDefault();
@@ -124,10 +123,10 @@ class Chat extends GUI{
     }
 
     createChatSettings(){
-        let count = 1;
+        let count = 0;
         this.topBar.querySelector('.appsettings').addEventListener('click', event =>{
             count += 1;
-            if(count % 2 === 0){
+            if(count === 1){
                 let chatSettingsDiv = document.createElement('div');
                 let rovarsprak = document.createElement('input');
                 let label = document.createElement('label');
@@ -160,9 +159,12 @@ class Chat extends GUI{
 
                 parentNode.insertBefore(chatSettingsDiv, children[0]);
 
-            }else{
+            }else if(count % 2 === 0){
                 let parent = this.topBar.parentNode;
                 parent.querySelector('.chatsettings').style.display = 'none';
+            }else{
+                let parent = this.topBar.parentNode;
+                parent.querySelector('.chatsettings').style.display = 'inline-block';
             }
         })
     }

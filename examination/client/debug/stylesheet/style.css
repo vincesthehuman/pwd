@@ -133,11 +133,12 @@ img{
     height: 93%;
     background-color: white;
     overflow: hidden;
+    text-align: center;
 }
 
 .onmousedown{
     opacity: 0.8;
-    z-index: 111;
+    z-index: 11111 !important;
 }
 
 .topwindow{
@@ -311,4 +312,13 @@ input, textarea{
 
 .pair{
     visibility: hidden;
+}
+
+.gamesettings {
+    display: inline-block;
+    float: right;
+    width: 200px;
+    height: 100px;
+    margin-right: -205px;
+    background-color: white;
 }
