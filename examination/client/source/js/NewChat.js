@@ -10,23 +10,23 @@ const GUI = require('./GUI');
 class Chat extends GUI{
     constructor(name, count){
         super(name, count);
-        this.content = document.getElementById(name+count).lastElementChild;                                            //Lets the app know which window is which
-        this.topBar = document.getElementById(name+count).firstElementChild;                                            //The topbar of the chat-app
-        this.createChatSettings();
-        this.chatName = '';
-        this.clientUserName = '';
-        this.enterName();
-        this.secretLangOption = false;
+        this.content = document.getElementById(name+count).lastElementChild;      //Lets the app know which window is which
+        this.topBar = document.getElementById(name+count).firstElementChild;      //The topbar of the chat-app
+        this.createChatSettings();          //Starts with calling on teh settings function
+        this.chatName = '';                 //Chatname is set to an empty string
+        this.clientUserName = '';           //Senders name is set to an empty string
+        this.enterName();                   //Starts the enter name
+        this.secretLangOption = false;      //Option to use the "secret lang"
     }
     enterName() {
         let userName = localStorage.getItem('ChatUser');
 
         if(userName !== null){
-            userName = JSON.parse(userName);
+            userName = JSON.parse(userName);            //If the name isnt null, calls in the chatApp function
             this.chatName = userName.username;
             this.chatApp();
 
-        }else{
+        }else{                                          //If null, create a option to pick a name
             this.content.className += ' username';
             let div = document.createElement('div');
             let divImg = document.createElement('div');
@@ -54,7 +54,7 @@ class Chat extends GUI{
             this.content.appendChild(div);
 
             aTag.addEventListener('click', event =>{
-                let inputValue = this.content.querySelector('input').value;
+                let inputValue = this.content.querySelector('input').value;         //Checks the username for some standard rules
 
                 if(inputValue.length <= 0 || inputValue.length >= 25 || inputValue === 'The Server'){
                     let text = document.createTextNode('Not a valid username!');
@@ -65,11 +65,11 @@ class Chat extends GUI{
                 }else{
                     this.userName = this.content.querySelector('input').value;
                     let chatUsername = {username: this.userName};
-                    localStorage.setItem('ChatUser', JSON.stringify(chatUsername));
+                    localStorage.setItem('ChatUser', JSON.stringify(chatUsername));     //If the username is valid, add the choosen username to LS
                     this.chatName = inputValue;
                     this.content.classList.remove('enterusername');
-                    this.content.textContent = '';
-                    this.chatApp();
+                    this.content.textContent = '';                    //Clear the div
+                    this.chatApp();                                   //Start the chatApp
                 }
             });
         }
@@ -130,7 +130,7 @@ class Chat extends GUI{
         let count = 0;
         this.topBar.querySelector('.appsettings').addEventListener('click', event =>{
             count += 1;
-            if(count === 1){
+            if(count === 1){ //Checks if the user har clicked for the first time, then create the needed elements
                 let chatSettingsDiv = document.createElement('div');
                 let rovarsprak = document.createElement('input');
                 let label = document.createElement('label');
@@ -153,7 +153,7 @@ class Chat extends GUI{
                     rovarsprak.setAttribute('checked', 'true');
                 }
 
-                rovarsprak.addEventListener('click', event =>{
+                rovarsprak.addEventListener('click', event =>{      //Event listener on when the user clicks the option
                     if(rovarsprak.checked === true){
                         this.secretLangOption = true;
                     }else{
@@ -168,10 +168,10 @@ class Chat extends GUI{
                 parentNode.insertBefore(chatSettingsDiv, children[0]);
 
             }else if(count % 2 === 0){
-                let parent = this.topBar.parentNode;
+                let parent = this.topBar.parentNode;    //If this is the second time (even) clicked, hide the settings
                 parent.querySelector('.chatsettings').style.display = 'none';
             }else{
-                let parent = this.topBar.parentNode;
+                let parent = this.topBar.parentNode;    //If this is a third time (uneven) clicked, display the settings again
                 parent.querySelector('.chatsettings').style.display = 'inline-block';
             }
         })
@@ -199,7 +199,7 @@ class Chat extends GUI{
         this.clientUserName = localStorage.getItem('ChatUser');                                                         //Checks the username every time a message is sent
         this.clientUserName = JSON.parse(this.clientUserName);
 
-        if (this.secretLangOption === true){
+        if (this.secretLangOption === true){        //If the secret lang is selcted, convert the messages
             input = this.secretLang(input);
         }
         let message = {
@@ -213,7 +213,7 @@ class Chat extends GUI{
 
     recieveMessage(e) {                                                                                                 //When new messages is received, display it in the chat window
         let response = JSON.parse(e.data);
-        let div = document.createElement('div');
+        let div = document.createElement('div');                //Creates all necessary elements
         let message = document.createElement('p');
         let senderName = document.createElement('p');
         let sender = document.createTextNode(response.username + ':');

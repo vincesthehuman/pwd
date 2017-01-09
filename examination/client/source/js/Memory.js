@@ -8,30 +8,30 @@ const GUI = require('./GUI');
 class Memory extends GUI{
     constructor(name, count){
         super(name, count);
-        this.content = document.getElementById(name+count).lastElementChild;
+        this.content = document.getElementById(name+count).lastElementChild;            //The content of the window created
         this.topBar = document.getElementById(name+count).firstElementChild;            //The topbar of the game-app
-        this.rows = 0;
-        this.cols = 0;
-        this.turn1;
-        this.turn2;
-        this.lastTile;
-        this.pairs = 0;
-        this.tries = 0;
-        this.createGameSettings();
+        this.rows = 0;      //How many rows of cards
+        this.cols = 0;      //How many columns of cards
+        this.turn1;         //First flipped cards
+        this.turn2;         //Second flipped card
+        this.lastTile;      //The last tile that was turned
+        this.pairs = 0;     //Counter for how many pars the user has
+        this.tries = 0;     //Sounter for how many tries the user have made
+        this.createGameSettings(); //Starts of calling on this function
     }
 
     gameBoard(cols, container, tiles) {
-        container.textContent = '';
+        container.textContent = '';     //Clears the div
 
         let aTag;
         let template = document.querySelectorAll('template')[1].content.firstElementChild;
         let scoreTemplate = document.querySelectorAll('template')[4].content.firstElementChild;
-        let divScore = document.importNode(scoreTemplate.firstElementChild, true);
+        let divScore = document.importNode(scoreTemplate.firstElementChild, true);                  //Import the template for the "scoreboard"
 
         container.appendChild(divScore);
 
         for(let i = 0; i < tiles.length; i++){
-            aTag = document.importNode(template.firstElementChild, true);
+            aTag = document.importNode(template.firstElementChild, true);       //Creates new tiles depending on how many tiles the client wants
 
             container.appendChild(aTag);
             aTag.setAttribute('class', 'memorybrick');
@@ -39,13 +39,13 @@ class Memory extends GUI{
             let tile = tiles[i];
 
             aTag.addEventListener('click', event =>{
-                let img = event.target.firstChild.nodeName === 'IMG' ? event : event.firstChild;
+                let img = event.target.firstChild.nodeName === 'IMG' ? event : event.firstChild;    //Adds an eventlistener to every element
 
                 this.turnBrick(tile, event.target.firstChild);
             });
 
             if((i + 1) % cols === 0){
-                container.appendChild(document.createElement('br'));
+                container.appendChild(document.createElement('br'));        //Adds a BR so that the cards are neatly organised
             }
         }
     }
@@ -66,15 +66,15 @@ class Memory extends GUI{
             shuffledArr.push(arr.splice(i, 1)[0]);
         }
 
-        return shuffledArr;
+        return shuffledArr;     //Returns the shuffled array
     }
 
-    turnBrick(tile, img) {
-        if(this.turn2){
+    turnBrick(tile, img) {          //The game logic
+        if(this.turn2){     //Prevents so that the user can click on a 3rd or more cards
             return;
         }
 
-        img.src = '/image/' + tile + '.png';
+        img.src = '/image/' + tile + '.png';                //Sets the source of the pic
         let message = this.content.firstElementChild;
 
         if(!this.turn1){
@@ -99,7 +99,7 @@ class Memory extends GUI{
 
                 if(this.pairs === (this.rows * this.cols) / 2){
                     message.textContent = '';
-                    let text = document.createTextNode('You only needed ' + this.tries + ' tries to win!');
+                    let text = document.createTextNode('You only needed ' + this.tries + ' tries to win! Click on the settings and start a new game!');
                     message.appendChild(text);
                 }
                 setTimeout(timeOut =>{
@@ -125,18 +125,18 @@ class Memory extends GUI{
     }
 
     createGameSettings(){
-        if(this.rows === 0){
+        if(this.rows === 0){        //If the user hasn't chosen any card for the game, an instruction on how to start the game is shown
             this.startGame();
         }
         let count = 0;
         this.topBar.querySelector('.appsettings').addEventListener('click', event =>{
             count += 1;
-            if(count === 1){
+            if(count === 1){ //Checks if the user har clicked for the first time, then import the template
                 let template = document.querySelectorAll('template')[2].content.firstElementChild;
                 let div = document.importNode(template, true);
 
-                div.addEventListener('click', event => {
-                    if(event.target.value === undefined){
+                div.addEventListener('click', event => {        //If any of the options is clicked, reset everything and start a new game
+                    if(event.target.value === undefined){       //If the user accidentally clicks outside, ignore it.
                         return;
                     }
                     this.content.textContent = '';
@@ -155,11 +155,11 @@ class Memory extends GUI{
                 let children = parentNode.childNodes;
                 parentNode.insertBefore(div, children[0]);
 
-            }else if(count % 2 === 0){
+            }else if(count % 2 === 0){ //If this is the second time (even) clicked, hide the settings
                 let parent = this.topBar.parentNode;
                 parent.querySelector('.gamesettings').style.display = 'none';
             }else{
-                let parent = this.topBar.parentNode;
+                let parent = this.topBar.parentNode;  //If this is a third time (uneven) clicked, display the settings again
                 parent.querySelector('.gamesettings').style.display = 'inline-block';
             }
 
@@ -167,7 +167,7 @@ class Memory extends GUI{
     }
 
     startGame() {
-        let template = document.querySelectorAll('template')[3].content.firstElementChild;
+        let template = document.querySelectorAll('template')[3].content.firstElementChild;  //Imports the instructions on how to start the game
         let div = document.importNode(template, true);
 
         this.content.appendChild(div);
