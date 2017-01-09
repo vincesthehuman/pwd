@@ -21,9 +21,14 @@ class Memory extends GUI{
     }
 
     gameBoard(cols, container, tiles) {
+        container.textContent = '';
         let aTag;
 
         let template = document.querySelectorAll('template')[1].content.firstElementChild;
+
+        let scoreTemplate = document.querySelectorAll('template')[4].content.firstElementChild;
+        let divScore = document.importNode(scoreTemplate.firstElementChild, true);
+        container.appendChild(divScore);
 
         for(let i = 0; i < tiles.length; i++){
             aTag = document.importNode(template.firstElementChild, true);
@@ -70,6 +75,7 @@ class Memory extends GUI{
         }
 
         img.src = '/image/' + tile + '.png';
+        let message = this.content.firstElementChild;
 
         if(!this.turn1){
             this.turn1 = img;
@@ -83,11 +89,18 @@ class Memory extends GUI{
             this.tries += 1;
             this.turn2 = img;
 
+            message.textContent = '';
+            let text = document.createTextNode('You have made ' + this.tries + ' tries so far!');
+
+            message.appendChild(text);
+
             if(tile === this.lastTile){
                 this.pairs += 1;
 
                 if(this.pairs === (this.rows * this.cols) / 2){
-                    console.log('You won on ' + this.tries + ' tries!!');
+                    message.textContent = '';
+                    let text = document.createTextNode('You only needed ' + this.tries + ' tries to win!');
+                    message.appendChild(text);
                 }
                 setTimeout(timeOut =>{
                     this.turn1.parentNode.classList.add('pair');
@@ -154,7 +167,10 @@ class Memory extends GUI{
     }
 
     startGame() {
-        console.log('hello first game!')
+        let template = document.querySelectorAll('template')[3].content.firstElementChild;
+        let div = document.importNode(template, true);
+
+        this.content.appendChild(div);
     }
 
 }

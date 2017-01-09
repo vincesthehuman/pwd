@@ -290,10 +290,17 @@ input, textarea{
 .chatsettings {
     display: inline-block;
     float: right;
-    width: 200px;
-    height: 100px;
-    margin-right: -205px;
+    width: 171px;
+    height: 68px;
+    margin-right: -180px;
     background-color: white;
+    border-radius: 5px;
+    border: solid #404552 2px;
+}
+
+.chatsettings p {
+    font-size: 12px;
+    margin-left: 5px;
 }
 
 
@@ -317,8 +324,14 @@ input, textarea{
 .gamesettings {
     display: inline-block;
     float: right;
-    width: 200px;
-    height: 100px;
-    margin-right: -205px;
+    width: 209px;
+    height: 68px;
+    margin-right: -218px;
     background-color: white;
+    border-radius: 5px;
+    border: solid #404552 2px;
+}
+
+.gamesettings p {
+    margin: 5px;
 }

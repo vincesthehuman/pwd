@@ -130,6 +130,8 @@ class Chat extends GUI{
                 let chatSettingsDiv = document.createElement('div');
                 let rovarsprak = document.createElement('input');
                 let label = document.createElement('label');
+                let pTag = document.createElement('p');
+                let pText = document.createTextNode('(Not very secret)');
 
                 label.appendChild(document.createTextNode('Rövarspråk'));
                 rovarsprak.setAttribute('type', 'checkbox');
@@ -140,6 +142,8 @@ class Chat extends GUI{
 
                 chatSettingsDiv.appendChild(rovarsprak);
                 chatSettingsDiv.appendChild(label);
+                pTag.appendChild(pText);
+                chatSettingsDiv.appendChild(pTag);
 
                 if(this.secretLangOption === true){                     //Checks if Rövarspråk is true, then the box should be checked
                     rovarsprak.setAttribute('checked', 'true');
