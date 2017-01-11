@@ -226,7 +226,7 @@ class Chat extends GUI{
         if(response.type !== 'heartbeat'){
             if(response.username === this.clientUserName.username){                                                     //If username is equal to the client user name, add client class
                 div.setAttribute('class', 'clientmessage')
-            }else if(response.username === 'The Server'){                                                               //Adds a class to server messages so user can tell difference
+            }else if(response.type === 'notification'){                                                               //Adds a class to server messages so user can tell difference
                 senderName.removeAttribute('class');
                 div.setAttribute('class', 'servermessage');
             } else{                                                                                                     //Adds a class to the replies with names not equal to the client username

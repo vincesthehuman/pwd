@@ -20,16 +20,19 @@ class NewDesktop {
 
 
         chat.addEventListener('click', event =>{
-           new Chat(event.target.parentNode.id, this.windowAppCounter.length);
+            event.preventDefault();
+            new Chat(event.target.parentNode.id, this.windowAppCounter.length);
         });                 //Creates a new chat upon a click, chat will inherit structure from Gui creating a new chat window
 
         game.addEventListener('click', event =>{
+            event.preventDefault();
             new Game(event.target.parentNode.id, this.windowAppCounter.length);
         });                 //Creates a new game upon a click, chat will inherit structure from Gui creating a new chat window
 
         settings.addEventListener('click', event => {
+            event.preventDefault();
             new Settings(event.target.parentNode.id, this.windowAppCounter.length);
-        });            //Creates a new chat upon a click, chat will inherit structure from Gui creating a new chat window
+        });                 //Creates a new chat upon a click, chat will inherit structure from Gui creating a new chat window
     }
 }
 

@@ -15,6 +15,7 @@ class GUI{
         this.gui();
     }
 
+
     gui(){
         let template = document.querySelectorAll('template')[0];
         let appWindow = document.importNode(template.content.firstElementChild, true);      //Selects the first template and imports it from the index.html
@@ -61,10 +62,12 @@ class GUI{
     move(selected) {    //Makes it possible for the user to move the window
         selected.addEventListener('mousedown', event =>{
 
+            event.preventDefault();
+
             selected.parentNode.classList.add('onmousedown');
 
-            let windowPosX = parseInt(selected.parentNode.style.left, 10);
-            let windowPosY = parseInt(selected.parentNode.style.top, 10);  //Sets the styling of the selected window
+            let windowPosX = parseInt(selected.parentNode.style.left);
+            let windowPosY = parseInt(selected.parentNode.style.top);  //Sets the styling of the selected window
 
             let offsetX = event.pageX - windowPosX;
             let offsetY = event.pageY - windowPosY;                         //The offset is calculated so that the windows top left corner doesn't "jump" to pointer
