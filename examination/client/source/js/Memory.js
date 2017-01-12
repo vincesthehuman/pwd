@@ -98,9 +98,12 @@ class Memory extends GUI{
                 this.pairs += 1;
 
                 if(this.pairs === (this.rows * this.cols) / 2){
-                    message.textContent = '';
-                    let text = document.createTextNode('You only needed ' + this.tries + ' tries to win! Click on the settings and start a new game!');
-                    message.appendChild(text);
+                    setTimeout(timeOut =>{
+                        message.textContent = '';
+                        let text = document.createTextNode('You only needed ' + this.tries + ' tries to win! Click on the settings and start a new game!');
+                        message.appendChild(text);
+                    }, 500)
+
                 }
                 setTimeout(timeOut =>{
                     this.turn1.parentNode.classList.add('pair');
@@ -129,7 +132,8 @@ class Memory extends GUI{
             this.startGame();
         }
         let count = 0;
-        this.topBar.querySelector('.appsettings').addEventListener('click', event =>{
+        this.topBar.querySelector('.appsettings').addEventListener('mousedown', event =>{
+            event.preventDefault();
             count += 1;
             if(count === 1){ //Checks if the user har clicked for the first time, then import the template
                 let template = document.querySelectorAll('template')[2].content.firstElementChild;

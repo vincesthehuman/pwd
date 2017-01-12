@@ -340,9 +340,14 @@ input, textarea{
     margin: 5px;
 }
 
+.startgame{
+    padding: 2%;
+}
 
 
 
+
+/*******Settings*********/
 
 .settingsContent {
     text-align: left;

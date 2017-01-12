@@ -30,7 +30,19 @@ class GUI{
 
         appWindow.style.top =+ 45 * (this.counter + 1) + 'px';
         appWindow.style.left =+ 105 * (this.counter + 1) + 'px';    //Adds a "bounce" to the windows
-        appWindow.style.zIndex = this.counter;
+
+        let removeZindex = document.getElementsByClassName('window');       //Counts all open windows in the wrapper
+
+        let zIndexCount = 0;
+        for(let i = 0; i < removeZindex.length; i ++) {                      //Gives a new z-index
+            let foo = removeZindex[i].style.zIndex;
+
+            if (parseInt(foo) > zIndexCount) {                                //If the zindex of the clicked window is higher than the zindex counter, z index counter gets a new value
+                zIndexCount = parseInt(foo);
+            }
+        }
+
+        appWindow.style.zIndex = zIndexCount;
 
         appWindow.firstElementChild.style.cursor = 'move';
 
@@ -61,7 +73,6 @@ class GUI{
 
     move(selected) {    //Makes it possible for the user to move the window
         selected.addEventListener('mousedown', event =>{
-
             event.preventDefault();
 
             selected.parentNode.classList.add('onmousedown');

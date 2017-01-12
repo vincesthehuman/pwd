@@ -128,7 +128,8 @@ class Chat extends GUI{
 
     createChatSettings(){
         let count = 0;
-        this.topBar.querySelector('.appsettings').addEventListener('click', event =>{
+        this.topBar.querySelector('.appsettings').addEventListener('mousedown', event =>{
+            event.preventDefault();
             count += 1;
             if(count === 1){ //Checks if the user har clicked for the first time, then create the needed elements
                 let chatSettingsDiv = document.createElement('div');
