@@ -8,7 +8,7 @@ const GUI = require('./GUI');
 class Memory extends GUI{
     constructor(name, count){
         super(name, count);
-        this.content = document.getElementById(name+count).lastElementChild;            //The content of the window created
+        this.windowContent = document.getElementById(name+count).lastElementChild;            //The content of the window created
         this.topBar = document.getElementById(name+count).firstElementChild;            //The topbar of the game-app
         this.rows = 0;      //How many rows of cards
         this.cols = 0;      //How many columns of cards
@@ -75,7 +75,7 @@ class Memory extends GUI{
         }
 
         img.src = '/image/' + tile + '.png';                //Sets the source of the pic
-        let message = this.content.firstElementChild;
+        let message = this.windowContent.firstElementChild;
 
         if(!this.turn1){
             this.turn1 = img;
@@ -143,7 +143,7 @@ class Memory extends GUI{
                     if(event.target.value === undefined){       //If the user accidentally clicks outside, ignore it.
                         return;
                     }
-                    this.content.textContent = '';
+                    this.windowContent.textContent = '';
                     this.pairs = 0;
                     this.tries = 0;
                     this.turn1 = null;
@@ -152,7 +152,7 @@ class Memory extends GUI{
                     this.rows = event.target.value[0];
                     this.cols = event.target.value[1];
                     this.tiles = this.picArray(this.rows, this.cols);
-                    this.gameBoard(this.cols, this.content, this.tiles);
+                    this.gameBoard(this.cols, this.windowContent, this.tiles);
                 });
 
                 let parentNode = this.topBar.parentNode;
@@ -174,7 +174,7 @@ class Memory extends GUI{
         let template = document.querySelectorAll('template')[3].content.firstElementChild;  //Imports the instructions on how to start the game
         let div = document.importNode(template, true);
 
-        this.content.appendChild(div);
+        this.windowContent.appendChild(div);
     }
 
 }

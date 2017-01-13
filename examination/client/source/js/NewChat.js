@@ -10,7 +10,7 @@ const GUI = require('./GUI');
 class Chat extends GUI{
     constructor(name, count){
         super(name, count);
-        this.content = document.getElementById(name+count).lastElementChild;      //Lets the app know which window is which
+        this.windowContent = document.getElementById(name+count).lastElementChild;      //Lets the app know which window is which
         this.topBar = document.getElementById(name+count).firstElementChild;      //The topbar of the chat-app
         this.createChatSettings();          //Starts with calling on teh settings function
         this.chatName = '';                 //Chatname is set to an empty string
@@ -27,7 +27,7 @@ class Chat extends GUI{
             this.chatApp();
 
         }else{                                          //If null, create a option to pick a name
-            this.content.className += ' username';
+            this.windowContent.className += ' username';
             let div = document.createElement('div');
             let divImg = document.createElement('div');
             let aTag = document.createElement('a');
@@ -51,24 +51,24 @@ class Chat extends GUI{
             div.appendChild(formTag);
             div.appendChild(divImg);
 
-            this.content.appendChild(div);
+            this.windowContent.appendChild(div);
 
             aTag.addEventListener('click', event =>{
-                let inputValue = this.content.querySelector('input').value;         //Checks the username for some standard rules
+                let inputValue = this.windowContent.querySelector('input').value;         //Checks the username for some standard rules
 
                 if(inputValue.length <= 0 || inputValue.length >= 25 || inputValue === 'The Server'){
                     let text = document.createTextNode('Not a valid username!');
                     let p = document.createElement('p');
 
                     p.appendChild(text);
-                    this.content.appendChild(p);
+                    this.windowContent.appendChild(p);
                 }else{
-                    this.userName = this.content.querySelector('input').value;
+                    this.userName = this.windowContent.querySelector('input').value;
                     let chatUsername = {username: this.userName};
                     localStorage.setItem('ChatUser', JSON.stringify(chatUsername));     //If the username is valid, add the choosen username to LS
                     this.chatName = inputValue;
-                    this.content.classList.remove('enterusername');
-                    this.content.textContent = '';                    //Clear the div
+                    this.windowContent.classList.remove('enterusername');
+                    this.windowContent.textContent = '';                    //Clear the div
                     this.chatApp();                                   //Start the chatApp
                 }
             });
@@ -96,17 +96,17 @@ class Chat extends GUI{
         sendATag.setAttribute('class', 'sendicon');                                                                     //Takes a image and uses it to send messages
         sendImg.setAttribute('src', '/image/send.png');
 
-        this.content.appendChild(this.textField);
+        this.windowContent.appendChild(this.textField);
         formTag.appendChild(inputTag);
         formDiv.appendChild(formTag);                                                                                   //Appends all the newly created elements
         sendATag.appendChild(sendImg);
         formDiv.appendChild(sendATag);
-        this.content.appendChild(formDiv);
+        this.windowContent.appendChild(formDiv);
 
         inputTag.addEventListener('keydown', event =>{                                                                  //Adds an event listener to the enter-key when typing, send the message when pressed
             if (event.which === 13){
                 event.preventDefault();
-                let clearInput = this.content.querySelector('textarea');
+                let clearInput = this.windowContent.querySelector('textarea');
                 let inputValue = clearInput.value;
                 if(inputValue.length > 0){
                     this.sendMessage(inputValue);
@@ -116,7 +116,7 @@ class Chat extends GUI{
         });
 
         sendATag.addEventListener('click', event =>{                                                                        //Adds an event listener to the send icon to send message
-            let clearInput = this.content.querySelector('textarea');
+            let clearInput = this.windowContent.querySelector('textarea');
             let inputValue = clearInput.value;
             if(inputValue.length > 0){
                 this.sendMessage(inputValue);
@@ -240,9 +240,9 @@ class Chat extends GUI{
             message.appendChild(textP);
             div.appendChild(message);
 
-            this.content.firstElementChild.appendChild(div);
+            this.windowContent.firstElementChild.appendChild(div);
         }
-        this.content.firstElementChild.scrollTop = this.content.firstElementChild.scrollHeight;                         //Scrolls and shows the latest message received
+        this.windowContent.firstElementChild.scrollTop = this.windowContent.firstElementChild.scrollHeight;                         //Scrolls and shows the latest message received
     }
 }
 

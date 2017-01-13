@@ -365,3 +365,51 @@ input, textarea{
 #newUsername {
     height: 30px;
 }
+
+.changeTheme{
+    margin-top: 2%;
+    width: 100%;
+    padding: 2%;
+}
+
+.text{
+    width: 100%;
+    text-align: left;
+}
+
+.options{
+    display: flex;
+    width: 100%;
+}
+
+.option1{
+    height: 65px;
+    width: 100px;
+    background-color: aliceblue;
+    margin: 2%;
+}
+
+.option2{
+    height: 65px;
+    width: 100px;
+    background-color: #F8BF28;
+    margin: 2%;
+}
+
+.option3{
+    height: 65px;
+    width: 100px;
+    background-color: #00aeff;
+    margin: 2%;
+}
+
+.option4{
+    height: 65px;
+    width: 100px;
+    background: url("/image/jakethedog.png");
+    margin: 2%;
+}
+
+.option4 img {
+    width: 100px;
+}
