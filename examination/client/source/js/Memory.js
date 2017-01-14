@@ -100,10 +100,29 @@ class Memory extends GUI{
                 if(this.pairs === (this.rows * this.cols) / 2){
                     setTimeout(timeOut =>{
                         message.textContent = '';
-                        let text = document.createTextNode('You only needed ' + this.tries + ' tries to win! Click on the settings and start a new game!');
+                        let text = document.createTextNode('You only needed ' + this.tries + ' tries to win!');
+                        let button = document.createElement('button');
+                        button.setAttribute('type', 'button');
+                        button.setAttribute('id', 'resetButton');
+                        button.textContent = 'Play again';
                         message.appendChild(text);
-                    }, 500)
+                        message.appendChild(button);
 
+                        let resetGame = this.windowContent.querySelector('#resetButton');
+                        console.log(resetGame);
+                        resetGame.addEventListener('click', event => {
+                            event.preventDefault();
+                            this.windowContent.textContent = '';
+                            this.pairs = 0;
+                            this.tries = 0;
+                            this.turn1 = null;
+                            this.turn2 = null;
+                            this.lastTile = null;
+                            this.tiles = this.picArray(this.rows, this.cols);
+                            this.gameBoard(this.cols, this.windowContent, this.tiles);
+                        })
+
+                    }, 500);
                 }
                 setTimeout(timeOut =>{
                     this.turn1.parentNode.classList.add('pair');

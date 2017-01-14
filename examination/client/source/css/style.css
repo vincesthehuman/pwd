@@ -105,6 +105,10 @@ img{
     text-align: center;
 }
 
+.Gametitle, .Chattitle, .Settingstitle{
+    margin-left: 10%;
+}
+
 .appsettings{
     cursor: pointer;
 }
@@ -342,6 +346,11 @@ input, textarea{
 
 .startgame{
     padding: 2%;
+}
+
+#resetButton{
+    display: block;
+    margin-left: 35%;
 }
 
 

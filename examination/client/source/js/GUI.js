@@ -21,6 +21,7 @@ class GUI{
         let appWindow = document.importNode(template.content.firstElementChild, true);      //Selects the first template and imports it from the index.html
 
         let pTag = document.createElement('p');
+        pTag.setAttribute('class', this.windowApp + 'title');
         let pText = document.createTextNode(this.windowApp);    //The name of the window
         pTag.appendChild(pText);
 
