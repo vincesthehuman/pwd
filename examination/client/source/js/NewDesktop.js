@@ -7,6 +7,7 @@ const Chat = require('./NewChat');
 const Game = require('./Memory');
 const Settings = require('./Settings');
 
+
 class NewDesktop {
     constructor(){
         this.windowAppCounter = document.getElementsByClassName('window');
@@ -22,17 +23,17 @@ class NewDesktop {
         chat.addEventListener('click', event =>{
             event.preventDefault();
             new Chat(event.target.parentNode.id, this.windowAppCounter.length);
-        });                 //Creates a new chat upon a click, chat will inherit structure from Gui creating a new chat window
+        });
 
         game.addEventListener('click', event =>{
             event.preventDefault();
             new Game(event.target.parentNode.id, this.windowAppCounter.length);
-        });                 //Creates a new game upon a click, chat will inherit structure from Gui creating a new chat window
+        });
 
         settings.addEventListener('click', event => {
             event.preventDefault();
             new Settings(event.target.parentNode.id, this.windowAppCounter.length);
-        });                 //Creates a new chat upon a click, chat will inherit structure from Gui creating a new chat window
+        });
     }
 }
 

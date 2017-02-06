@@ -7,48 +7,49 @@ class Settings extends GUI{
     constructor(name, count){
         super(name, count);
         this.windowContent = document.getElementById(name+count).lastElementChild;
-        this.topBar = document.getElementById(name+count).firstElementChild;            //The topbar of the game-app
-        this.createChatSettingsContent();                   //Starting point of the app
+        this.topBar = document.getElementById(name+count).firstElementChild;
+        this.createChatSettingsContent();
         this.changeTheme();
         this.message = document.createElement('p');
     }
-    createChatSettingsContent() {
-        // if(this.windowContent.querySelector('.settingsContent').firstElementChild !== null){
-        //     this.windowContent.removeChild(this.windowContent.querySelector('.settingsContent'));     //Clears the div
-        // }
 
-        let template = document.querySelectorAll('template')[5].content;  //Imports the template needed
+    createChatSettingsContent() {
+        let template = document.querySelectorAll('template')[5].content;
         let div = document.importNode(template, true);
 
         this.windowContent.appendChild(div);
         let username = this.windowContent.querySelector('#username');
-        this.checkUserName(username);       //Checks the username
+        this.checkUserName(username);
     }
 
+    /**
+     *
+     * @param username
+     */
     checkUserName(username) {
-        let clientUserName = localStorage.getItem('ChatUser');      //Checks local storage for a username
+        let clientUserName = localStorage.getItem('ChatUser');
 
         let name = JSON.parse(clientUserName);
 
-        if(name === null){      //If username is not defined, set to an empty string
+        if(name === null){
             name = '';
         }
 
         let pTag = document.createElement('p');
-        let pText = document.createTextNode(name.username);     //The username is put in a p element
+        let pText = document.createTextNode(name.username);
 
         if(pText.textContent === 'undefined'){
-            pTag.setAttribute('class', 'usernameNotSet');       //If the username is undefined, add the class username not set
+            pTag.setAttribute('class', 'usernameNotSet');
         }
 
         pTag.appendChild(pText);
         username.appendChild(pTag);
 
-        let button = this.windowContent.querySelectorAll('button')[0];  //Adds an event to the first button in the window
+        let button = this.windowContent.querySelectorAll('button')[0];
 
         let input = this.windowContent.querySelector('input');
 
-        input.addEventListener('keydown', event =>{                                                                  //Adds an event listener to the enter-key when typing, send the message when pressed
+        input.addEventListener('keydown', event =>{
             if (event.which === 13){
                 this.verifyUsername(input);
             }
@@ -59,17 +60,25 @@ class Settings extends GUI{
         });
     }
 
+    /**
+     *
+     * @param input
+     */
     verifyUsername(input){
-        if(input.value.length <= 0 || input.value.length >= 25 || input.value === 'The Server'){ //Checks the input value if it is a proper username
+        if(input.value.length <= 0 || input.value.length >= 25 || input.value === 'The Server'){
             let text = document.createTextNode('Not a valid username!');
             let p = document.createElement('p');
 
             p.appendChild(text);
             this.windowContent.appendChild(p);
+
+            /**
+             * ToDo remove the p-tag so that they don't stack
+             */
         }else{
             this.userName = this.windowContent.querySelector('input').value;
             let chatUsername = {username: this.userName};
-            localStorage.setItem('ChatUser', JSON.stringify(chatUsername));     //If the username passes the rules, LS is set to the new name
+            localStorage.setItem('ChatUser', JSON.stringify(chatUsername));
             let newName = this.windowContent.querySelector('#username');
             newName.textContent = this.userName;
             this.windowContent.querySelector('.settingsContent').querySelector('input').value = '';
@@ -104,6 +113,15 @@ class Settings extends GUI{
             let option3 = '#00aeff';
 
             let wrapper = document.querySelector('#wrapper');
+
+            /**
+             * ToDo set new background in LS, read from that, all the time in desktop
+             *
+             * todo give a border to the active pic in use right now
+             *
+             *
+             * todo clean up the code, remove massive if-statement
+             */
 
             if(clicked === 'option1'){
                 wrapper.style.background = 0;

@@ -8,30 +8,36 @@ const GUI = require('./GUI');
 class Memory extends GUI{
     constructor(name, count){
         super(name, count);
-        this.windowContent = document.getElementById(name+count).lastElementChild;            //The content of the window created
-        this.topBar = document.getElementById(name+count).firstElementChild;            //The topbar of the game-app
-        this.rows = 0;      //How many rows of cards
-        this.cols = 0;      //How many columns of cards
-        this.turn1;         //First flipped cards
-        this.turn2;         //Second flipped card
-        this.lastTile;      //The last tile that was turned
-        this.pairs = 0;     //Counter for how many pars the user has
-        this.tries = 0;     //Sounter for how many tries the user have made
-        this.createGameSettings(); //Starts of calling on this function
+        this.windowContent = document.getElementById(name+count).lastElementChild;
+        this.topBar = document.getElementById(name+count).firstElementChild;
+        this.rows = 0;
+        this.cols = 0;
+        this.turn1;
+        this.turn2;
+        this.lastTile;
+        this.pairs = 0;
+        this.tries = 0;
+        this.createGameSettings();
     }
 
+    /**
+     *
+     * @param cols
+     * @param container
+     * @param tiles
+     */
     gameBoard(cols, container, tiles) {
-        container.textContent = '';     //Clears the div
+        container.textContent = '';
 
         let aTag;
         let template = document.querySelectorAll('template')[1].content.firstElementChild;
         let scoreTemplate = document.querySelectorAll('template')[4].content.firstElementChild;
-        let divScore = document.importNode(scoreTemplate.firstElementChild, true);                  //Import the template for the "scoreboard"
+        let divScore = document.importNode(scoreTemplate.firstElementChild, true);
 
         container.appendChild(divScore);
 
         for(let i = 0; i < tiles.length; i++){
-            aTag = document.importNode(template.firstElementChild, true);       //Creates new tiles depending on how many tiles the client wants
+            aTag = document.importNode(template.firstElementChild, true);
 
             container.appendChild(aTag);
             aTag.setAttribute('class', 'memorybrick');
@@ -39,21 +45,27 @@ class Memory extends GUI{
             let tile = tiles[i];
 
             aTag.addEventListener('click', event =>{
-                let img = event.target.firstChild.nodeName === 'IMG' ? event : event.firstChild;    //Adds an eventlistener to every element
+                let img = event.target.firstChild.nodeName === 'IMG' ? event : event.firstChild;
 
                 this.turnBrick(tile, event.target.firstChild);
             });
 
             if((i + 1) % cols === 0){
-                container.appendChild(document.createElement('br'));        //Adds a BR so that the cards are neatly organised
+                container.appendChild(document.createElement('br'));
             }
         }
     }
 
+    /**
+     *
+     * @param rows
+     * @param cols
+     * @returns {Array}
+     */
     picArray(rows, cols) {
         let arr = [];
 
-        for(let i = 1; i <= (rows * cols) / 2; i++){                    //Creates an array with the amount of cards that the client has chosen
+        for(let i = 1; i <= (rows * cols) / 2; i++){
             arr.push(i);
             arr.push(i);
         }
@@ -61,20 +73,25 @@ class Memory extends GUI{
         let n = arr.length;
         let shuffledArr = [];
 
-        while (n) {                                                     //Shuffles the array
+        while (n) {
             let i = Math.floor(Math.random() * n--);
             shuffledArr.push(arr.splice(i, 1)[0]);
         }
 
-        return shuffledArr;     //Returns the shuffled array
+        return shuffledArr;
     }
 
-    turnBrick(tile, img) {          //The game logic
-        if(this.turn2){     //Prevents so that the user can click on a 3rd or more cards
+    /**
+     *
+     * @param tile
+     * @param img
+     */
+    turnBrick(tile, img) {
+        if(this.turn2){
             return;
         }
 
-        img.src = '/image/' + tile + '.png';                //Sets the source of the pic
+        img.src = '/image/' + tile + '.png';
         let message = this.windowContent.firstElementChild;
 
         if(!this.turn1){
@@ -147,19 +164,19 @@ class Memory extends GUI{
     }
 
     createGameSettings(){
-        if(this.rows === 0){        //If the user hasn't chosen any card for the game, an instruction on how to start the game is shown
+        if(this.rows === 0){
             this.startGame();
         }
         let count = 0;
         this.topBar.querySelector('.appsettings').addEventListener('mousedown', event =>{
             event.preventDefault();
             count += 1;
-            if(count === 1){ //Checks if the user har clicked for the first time, then import the template
+            if(count === 1){
                 let template = document.querySelectorAll('template')[2].content.firstElementChild;
                 let div = document.importNode(template, true);
 
-                div.addEventListener('click', event => {        //If any of the options is clicked, reset everything and start a new game
-                    if(event.target.value === undefined){       //If the user accidentally clicks outside, ignore it.
+                div.addEventListener('click', event => {
+                    if(event.target.value === undefined){
                         return;
                     }
                     this.windowContent.textContent = '';
@@ -178,11 +195,11 @@ class Memory extends GUI{
                 let children = parentNode.childNodes;
                 parentNode.insertBefore(div, children[0]);
 
-            }else if(count % 2 === 0){ //If this is the second time (even) clicked, hide the settings
+            }else if(count % 2 === 0){
                 let parent = this.topBar.parentNode;
                 parent.querySelector('.gamesettings').style.display = 'none';
             }else{
-                let parent = this.topBar.parentNode;  //If this is a third time (uneven) clicked, display the settings again
+                let parent = this.topBar.parentNode;
                 parent.querySelector('.gamesettings').style.display = 'inline-block';
             }
 

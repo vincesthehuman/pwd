@@ -4,41 +4,46 @@
  * * ToDo Make a gui that all the apps inherits.
  */
 
+/**
+ * Todo place the settings- and close icon so that the div does not gets a transparency
+ */
 
 'use strict';
 
 class GUI{
     constructor(windowApp, counter) {
-        this.windowApp = windowApp;             //What type of window is being created
-        this.counter = counter;                 //A counter for how many windows there are
+        this.windowApp = windowApp;
+        this.counter = counter;
         this.wrapper = document.querySelector('#wrapper');
         this.gui();
     }
 
-
+    /**
+     * Creates the basic GUI layout
+     */
     gui(){
         let template = document.querySelectorAll('template')[0];
-        let appWindow = document.importNode(template.content.firstElementChild, true);      //Selects the first template and imports it from the index.html
+        let appWindow = document.importNode(template.content.firstElementChild, true);
 
         let pTag = document.createElement('p');
         pTag.setAttribute('class', this.windowApp + 'title');
-        let pText = document.createTextNode(this.windowApp);    //The name of the window
+        let pText = document.createTextNode(this.windowApp);
         pTag.appendChild(pText);
 
-        appWindow.setAttribute('id', this.windowApp + this.counter);                                        //The window is given an id, with type and a number
-        this.topBar = appWindow.querySelector('.topbar').setAttribute('id', 'window ' + this.windowApp);    //The windows topbar gets a similar id
+        appWindow.setAttribute('id', this.windowApp + this.counter);
+        this.topBar = appWindow.querySelector('.topbar').setAttribute('id', 'window ' + this.windowApp);
         appWindow.querySelector('.topbar').appendChild(pTag);
 
         appWindow.style.top =+ 45 * (this.counter + 1) + 'px';
-        appWindow.style.left =+ 105 * (this.counter + 1) + 'px';    //Adds a "bounce" to the windows
+        appWindow.style.left =+ 105 * (this.counter + 1) + 'px';
 
-        let removeZindex = document.getElementsByClassName('window');       //Counts all open windows in the wrapper
+        let removeZindex = document.getElementsByClassName('window');
 
         let zIndexCount = 0;
-        for(let i = 0; i < removeZindex.length; i ++) {                      //Gives a new z-index
+        for(let i = 0; i < removeZindex.length; i ++) {
             let foo = removeZindex[i].style.zIndex;
 
-            if (parseInt(foo) > zIndexCount) {                                //If the zindex of the clicked window is higher than the zindex counter, z index counter gets a new value
+            if (parseInt(foo) > zIndexCount) {
                 zIndexCount = parseInt(foo);
             }
         }
@@ -47,42 +52,54 @@ class GUI{
 
         appWindow.firstElementChild.style.cursor = 'move';
 
-        appWindow.querySelector('.topicon').setAttribute('src', '/image/' + this.windowApp + '.png');       //The icon corresponds to the type of window that is choosen
+        appWindow.querySelector('.topicon').setAttribute('src', '/image/' + this.windowApp + '.png');
 
-        if(this.windowApp === 'Game' || this.windowApp === 'Chat'){                            //Adds a settings option
+        if(this.windowApp === 'Game' || this.windowApp === 'Chat'){
             this.appSettings(appWindow);
         }
 
-        appWindow.querySelector('#close').addEventListener('click', event =>{                  //Adds the function to close a window
+        appWindow.querySelector('#close').addEventListener('click', event =>{
             this.close(event.target);
         });
 
-        this.move(appWindow.firstElementChild);                                                 //Adds the function to move a window
+        this.move(appWindow.firstElementChild);
 
         this.wrapper.appendChild(appWindow);
 
     }
 
-    close(node) {       //Removes the parent node of the parent node (the Window selected)
+    /**
+     * Makes a close button
+     * @param node
+     */
+    close(node) {
         node.parentNode.parentNode.parentNode.removeChild(node.parentNode.parentNode);
     }
 
+    /**
+     * Adds settings icon
+     * @param position
+     */
     appSettings(position) {
         position.querySelector('.appsettings').setAttribute('id', this.windowApp + this.counter);
-        position.querySelector('.appsettings').firstChild.setAttribute('src', '/image/Settings.png');   //Adds the settings icon
+        position.querySelector('.appsettings').firstChild.setAttribute('src', '/image/Settings.png');
     }
 
-    move(selected) {    //Makes it possible for the user to move the window
+    /**
+     * Enables the window to move
+     * @param selected
+     */
+    move(selected) {
         selected.addEventListener('mousedown', event =>{
             event.preventDefault();
 
             selected.parentNode.classList.add('onmousedown');
 
             let windowPosX = parseInt(selected.parentNode.style.left);
-            let windowPosY = parseInt(selected.parentNode.style.top);  //Sets the styling of the selected window
+            let windowPosY = parseInt(selected.parentNode.style.top);
 
             let offsetX = event.pageX - windowPosX;
-            let offsetY = event.pageY - windowPosY;                         //The offset is calculated so that the windows top left corner doesn't "jump" to pointer
+            let offsetY = event.pageY - windowPosY;
 
             let moveWindow = e => {
                 let moveToX = e.pageX - offsetX;
@@ -93,13 +110,13 @@ class GUI{
 
             let removeEvent = x => {
                 selected.parentNode.classList.remove('onmousedown');
-                let removeZindex = document.getElementsByClassName('window');       //Counts all open windows in the wrapper
+                let removeZindex = document.getElementsByClassName('window');
 
                 let zIndexCount = 0;
-                for(let i = 0; i < removeZindex.length; i ++){                      //Gives a new z-index
+                for(let i = 0; i < removeZindex.length; i ++){
                     let foo = removeZindex[i].style.zIndex;
 
-                    if(parseInt(foo) > zIndexCount){                                //If the zindex of the clicked window is higher than the zindex counter, z index counter gets a new value
+                    if(parseInt(foo) > zIndexCount){
                         zIndexCount = parseInt(foo);
                     }
                 }
