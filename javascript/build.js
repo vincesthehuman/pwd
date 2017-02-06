@@ -53,7 +53,7 @@ class GUI{
 
         appWindow.firstElementChild.style.cursor = 'move';
 
-        appWindow.querySelector('.topicon').setAttribute('src', '/image/' + this.windowApp + '.png');
+        appWindow.querySelector('.topicon').setAttribute('src', '/pwd/image/' + this.windowApp + '.png');
 
         if(this.windowApp === 'Game' || this.windowApp === 'Chat'){
             this.appSettings(appWindow);
@@ -83,7 +83,7 @@ class GUI{
      */
     appSettings(position) {
         position.querySelector('.appsettings').setAttribute('id', this.windowApp + this.counter);
-        position.querySelector('.appsettings').firstChild.setAttribute('src', '/image/Settings.png');
+        position.querySelector('.appsettings').firstChild.setAttribute('src', '/pwd/image/Settings.png');
     }
 
     /**
@@ -229,7 +229,7 @@ class Memory extends GUI{
             return;
         }
 
-        img.src = '/image/' + tile + '.png';
+        img.src = '/pwd/image/' + tile + '.png';
         let message = this.windowContent.firstElementChild;
 
         if(!this.turn1){
@@ -291,8 +291,8 @@ class Memory extends GUI{
 
             }else{
                 window.setTimeout( e =>{
-                    this.turn1.src = '/image/0.png';
-                    this.turn2.src = '/image/0.png';
+                    this.turn1.src = '/pwd/image/0.png';
+                    this.turn2.src = '/pwd/image/0.png';
 
                     this.turn1 = null;
                     this.turn2 = null;
@@ -401,7 +401,7 @@ class Chat extends GUI{
             let inputTag = document.createElement('input');
 
             aTag.setAttribute('href', '#');
-            img.setAttribute('src', '/image/accept.png');
+            img.setAttribute('src', '/pwd/image/accept.png');
             div.setAttribute('class', 'usernamefield');
 
             aTag.appendChild(img);
@@ -459,7 +459,7 @@ class Chat extends GUI{
         inputTag.setAttribute('class', 'chatinput');
         sendATag.setAttribute('href', '#');
         sendATag.setAttribute('class', 'sendicon');
-        sendImg.setAttribute('src', '/image/send.png');
+        sendImg.setAttribute('src', '/pwd/image/send.png');
 
         this.windowContent.appendChild(this.textField);
         formTag.appendChild(inputTag);
@@ -807,7 +807,7 @@ class Settings extends GUI{
                 wrapper.style.background = 0;
                 wrapper.style.backgroundColor = option3;
             }else if(clicked === 'option4'){
-                wrapper.style.background = 'url("/image/jakethedog.png") center';
+                wrapper.style.background = 'url("/pwd/image/jakethedog.png") center';
             }
         })
     }
